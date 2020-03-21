@@ -25,7 +25,8 @@ SOURCES += \
     mainwindow.cpp \
     Diary/modifyfile.cpp \
     Diary/openoldfilewidget.cpp \
-    Password/passwordwidget.cpp
+    Password/passwordwidget.cpp \
+    WiseLine/wiselineparser.cpp
 
 HEADERS += \
     Diary/diarywidget.h \
@@ -34,7 +35,8 @@ HEADERS += \
     mainwindow.h \
     Diary/modifyfile.h \
     Diary/openoldfilewidget.h \
-    Password/passwordwidget.h
+    Password/passwordwidget.h \
+    WiseLine/wiselineparser.h
 
 FORMS += \
     Diary/diarywidget.ui \
@@ -48,4 +50,7 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Resource/resource.qrc
 
