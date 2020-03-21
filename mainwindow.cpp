@@ -5,14 +5,14 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    mainMod(false)
+    m_mainMod(false)
 {
     ui->setupUi(this);
 
-    passwordWidget.show();
+    m_passwordWidget.show();
 
-    connect(&passwordWidget, &PasswordWidget::confirmedBasePassword, this, &MainWindow::confirmedBasePassword);
-    connect(&passwordWidget, &PasswordWidget::confirmedMainPassword, this, &MainWindow::confirmedMainPassword);
+    connect(&m_passwordWidget, &PasswordWidget::confirmedBasePassword, this, &MainWindow::ConfirmedBasePassword);
+    connect(&m_passwordWidget, &PasswordWidget::confirmedMainPassword, this, &MainWindow::ConfirmedMainPassword);
 }
 
 MainWindow::~MainWindow()
@@ -20,26 +20,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::showMainWindow()
+void MainWindow::ShowMainWindow()
 {
-    passwordWidget.hide();
+    m_passwordWidget.hide();
     this->show();
 }
 
-void MainWindow::confirmedBasePassword()
+void MainWindow::ConfirmedBasePassword()
 {
-    mainMod = false;
-    showMainWindow();
+    m_mainMod = false;
+    ShowMainWindow();
 }
 
-void MainWindow::confirmedMainPassword()
+void MainWindow::ConfirmedMainPassword()
 {
-    mainMod = true;
-    showMainWindow();
+    m_mainMod = true;
+    ShowMainWindow();
 }
 
 void MainWindow::on_bDiary_clicked()
 {
     this->hide();
-    diaryWidget.show(); // !? не скрываю окно и нет кнопки выхода
+    m_diaryWidget.show(); // ! не скрываю окно и нет кнопки выхода
+}
+
+void MainWindow::on_bGoals_clicked()
+{
+    this->hide();
+    m_goalsWidget.show();
 }

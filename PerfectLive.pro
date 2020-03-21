@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui #sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,6 +19,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     diarywidget.cpp \
+    filedirutils.cpp \
+    goalswidget.cpp \
     main.cpp \
     mainwindow.cpp \
     modifyfile.cpp \
@@ -27,6 +29,8 @@ SOURCES += \
 
 HEADERS += \
     diarywidget.h \
+    filedirutils.h \
+    goalswidget.h \
     mainwindow.h \
     modifyfile.h \
     openoldfilewidget.h \
@@ -34,6 +38,7 @@ HEADERS += \
 
 FORMS += \
     diarywidget.ui \
+    goalswidget.ui \
     mainwindow.ui \
     modifyfile.ui \
     openoldfilewidget.ui \
@@ -43,3 +48,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    goals/goals.png

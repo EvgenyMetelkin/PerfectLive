@@ -5,6 +5,7 @@
 
 #include "passwordwidget.h"
 #include "diarywidget.h"
+#include "goalswidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,19 +20,22 @@ public:
     ~MainWindow();
 
 public slots:
-    void confirmedBasePassword();
-    void confirmedMainPassword();
+    void ConfirmedBasePassword();
+    void ConfirmedMainPassword();
 
 private slots:
     void on_bDiary_clicked();
 
+    void on_bGoals_clicked();
+
 private:
-    void showMainWindow();
+    void ShowMainWindow();
 
 private:
     Ui::MainWindow *ui;
-    PasswordWidget passwordWidget;
-    bool mainMod;
-    DiaryWidget diaryWidget;
+    PasswordWidget m_passwordWidget;
+    bool m_mainMod;
+    DiaryWidget m_diaryWidget;
+    GoalsWidget m_goalsWidget;
 };
 #endif // MAINWINDOW_H
