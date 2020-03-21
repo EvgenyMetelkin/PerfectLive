@@ -18,36 +18,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    diarywidget.cpp \
-    filedirutils.cpp \
-    goalswidget.cpp \
+    Diary/diarywidget.cpp \
+    Global/filedirutils.cpp \
+    Goals/goalswidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    modifyfile.cpp \
-    openoldfilewidget.cpp \
-    passwordwidget.cpp
+    Diary/modifyfile.cpp \
+    Diary/openoldfilewidget.cpp \
+    Password/passwordwidget.cpp
 
 HEADERS += \
-    diarywidget.h \
-    filedirutils.h \
-    goalswidget.h \
+    Diary/diarywidget.h \
+    Global/filedirutils.h \
+    Goals/goalswidget.h \
     mainwindow.h \
-    modifyfile.h \
-    openoldfilewidget.h \
-    passwordwidget.h
+    Diary/modifyfile.h \
+    Diary/openoldfilewidget.h \
+    Password/passwordwidget.h
 
 FORMS += \
-    diarywidget.ui \
-    goalswidget.ui \
+    Diary/diarywidget.ui \
+    Goals/goalswidget.ui \
     mainwindow.ui \
-    modifyfile.ui \
-    openoldfilewidget.ui \
-    passwordwidget.ui
+    Diary/modifyfile.ui \
+    Diary/openoldfilewidget.ui \
+    Password/passwordwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    goals/goals.png

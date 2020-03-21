@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include "diarywidget.h"
-
 
 #include <QApplication>
 

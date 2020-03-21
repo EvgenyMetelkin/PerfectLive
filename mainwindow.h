@@ -3,9 +3,9 @@
 
 #include <QMainWindow>
 
-#include "passwordwidget.h"
-#include "diarywidget.h"
-#include "goalswidget.h"
+#include "Password/passwordwidget.h"
+#include "Diary/diarywidget.h"
+#include "Goals/goalswidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
