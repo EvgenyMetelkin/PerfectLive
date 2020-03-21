@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "WiseLine/wiselineparser.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(&m_passwordWidget, &PasswordWidget::confirmedBasePassword, this, &MainWindow::ConfirmedBasePassword);
     connect(&m_passwordWidget, &PasswordWidget::confirmedMainPassword, this, &MainWindow::ConfirmedMainPassword);
+
+    ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }
 
 MainWindow::~MainWindow()

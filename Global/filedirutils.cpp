@@ -14,3 +14,4 @@ QString FileDirUtils::GetAbsolutePath(const QString &file)
     qDebug() << "absolutePath.absoluteFilePath(file) " << absolutePath.absoluteFilePath(file);
     return absolutePath.absoluteFilePath(GetCurrentPath() + file);
 }
+
