@@ -20,8 +20,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void ConfirmedBasePassword();
-    void ConfirmedMainPassword();
+    void ConfirmedPassword();
 
 private slots:
     void on_bDiary_clicked();
@@ -34,7 +33,6 @@ private:
 private:
     Ui::MainWindow *ui;
     PasswordWidget m_passwordWidget;
-    bool m_mainMod;
     DiaryWidget m_diaryWidget;
     GoalsWidget m_goalsWidget;
 };

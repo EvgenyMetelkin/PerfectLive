@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Diary/diarywidget.cpp \
     Global/filedirutils.cpp \
+    Global/settings.cpp \
     Goals/goalswidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 HEADERS += \
     Diary/diarywidget.h \
     Global/filedirutils.h \
+    Global/settings.h \
     Goals/goalswidget.h \
     mainwindow.h \
     Diary/modifyfile.h \

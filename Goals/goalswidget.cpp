@@ -1,6 +1,6 @@
 #include "goalswidget.h"
 #include "ui_goalswidget.h"
-#include "filedirutils.h"
+#include "Global/filedirutils.h"
 
 #include <QFile>
 #include <QDebug>

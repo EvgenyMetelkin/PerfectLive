@@ -5,15 +5,13 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    m_mainMod(false)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
     m_passwordWidget.show();
 
-    connect(&m_passwordWidget, &PasswordWidget::confirmedBasePassword, this, &MainWindow::ConfirmedBasePassword);
-    connect(&m_passwordWidget, &PasswordWidget::confirmedMainPassword, this, &MainWindow::ConfirmedMainPassword);
+    connect(&m_passwordWidget, &PasswordWidget::confirmedPassword, this, &MainWindow::ConfirmedPassword);
 
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }
@@ -29,15 +27,8 @@ void MainWindow::ShowMainWindow()
     this->show();
 }
 
-void MainWindow::ConfirmedBasePassword()
+void MainWindow::ConfirmedPassword()
 {
-    m_mainMod = false;
-    ShowMainWindow();
-}
-
-void MainWindow::ConfirmedMainPassword()
-{
-    m_mainMod = true;
     ShowMainWindow();
 }
 
