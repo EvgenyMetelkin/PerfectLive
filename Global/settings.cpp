@@ -54,3 +54,15 @@ Settings::ValueRef & Settings::ValueRef::operator = (const QVariant &data){
     parent.conf.setValue(keyPath, data);
     return *this;
 }
+
+//PRIVATE METHODS--------------------------------------------------------------
+QString Settings::keyPath(Section s, Key k){
+    auto szSection = sections.valueToKey(s);
+    auto szKey = keys.valueToKey(k);
+    return QString(s == General ? "%1" : "%2/%1").arg(szKey).arg(szSection);
+}
+
+Settings & Settings::instance(){
+    static Settings singleton;
+    return singleton;
+}
