@@ -4,8 +4,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
-RC_FILE = myapp.rc
-
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -55,4 +53,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Resource/resource.qrc
+
+# ! иконка работает только в windows
+win32: RC_ICONS = $$PWD/Resource/icon.ico
+
 
