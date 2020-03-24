@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_passwordWidget.show();
 
-    connect(&m_passwordWidget, &PasswordWidget::confirmedPassword, this, &MainWindow::ConfirmedPassword);
+    connect(&m_passwordWidget, &PasswordWidget::ConfirmedPassword, this, &MainWindow::ConfirmedPassword);
 
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }

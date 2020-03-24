@@ -22,12 +22,12 @@ private slots:
     void on_ModifyFile_destroyed();
 
 private:
-    void openFile();
+    void OpenFile();
 
 private:
     Ui::ModifyFile *ui;
-    QString dir;
-    QFile file;
+    QString m_dir;
+    QFile m_file;
 };
 
 #endif // MODIFYFILE_H

@@ -15,17 +15,18 @@ public:
     };
 
     enum Key{
-        Mode
+        Mode,
+        DiaryPath
     };
 
     class ValueRef{
     public:
         ValueRef(Settings &st, const QString &kp) :
-            parent(st), keyPath(kp){}
+            m_parent(st), m_keyPath(kp){}
         ValueRef & operator = (const QVariant &d);
     private:
-        Settings &parent;
-        const QString keyPath;
+        Settings &m_parent;
+        const QString m_keyPath;
     };
 
     static void setDefaults(const QString &str);
@@ -36,14 +37,16 @@ private:
     QString keyPath(Section, Key);
 
     static Settings & instance();
-    QMetaEnum keys;
-    QMetaEnum sections;
-    QMap<QString, QVariant> defaults;
-    QSettings conf;
 
     Settings();
     Settings(const Settings &);
     Settings & operator = (const Settings &);
+
+private:
+    QMetaEnum m_keys;
+    QMetaEnum m_sections;
+    QMap<QString, QVariant> m_defaults;
+    QSettings m_conf;
 };
 
 #endif // SETTINGS_H

@@ -16,7 +16,7 @@ public:
     ~PasswordWidget();
 
 signals:
-    void confirmedPassword();
+    void ConfirmedPassword();
 
 private slots:
     void on_Accept_clicked();

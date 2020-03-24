@@ -22,7 +22,7 @@ private:
 private:
     Ui::GoalsWidget *ui;
     QString m_goalsFileName;
-    int subgoalCounter;
+    int m_subgoalCounter;
 
 };
 

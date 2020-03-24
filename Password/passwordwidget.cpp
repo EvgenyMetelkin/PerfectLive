@@ -21,11 +21,11 @@ void PasswordWidget::on_Accept_clicked()
     qDebug() << Settings::get(Settings::Mode, Settings::General).toString();
     if(ui->Password->text() == "12344321") {
         Settings::set(Settings::Mode, Settings::General) = "base";
-        emit confirmedPassword();
+        emit ConfirmedPassword();
     }
     else if(ui->Password->text() == "zkexibq4") {
         Settings::set(Settings::Mode, Settings::General) = "hidden";
-        emit confirmedPassword();
+        emit ConfirmedPassword();
     }
     else
         ui->Error->setText("Failed password");

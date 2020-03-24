@@ -6,36 +6,36 @@
 ModifyFile::ModifyFile(QString &_dir, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ModifyFile),
-    dir(_dir),
-    file(_dir)
+    m_dir(_dir),
+    m_file(_dir)
 {
     ui->setupUi(this);
-    qDebug() << "Open " << dir;
-    openFile();
+    qDebug() << "Open " << m_dir;
+    OpenFile();
     this->show();
 }
 
 ModifyFile::~ModifyFile() // !? не вызывается диструктор если нажать на крест
 {
-    file.close();
-    qDebug() << "Close " << dir;
+    m_file.close();
+    qDebug() << "Close " << m_dir;
     delete ui;
 }
 
-void ModifyFile::openFile()
+void ModifyFile::OpenFile()
 {
-    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+    if (!m_file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         qDebug() << "Don't open file...";
         return;
     }
 
-    QTextStream in(&file);
+    QTextStream in(&m_file);
     ui->text->setPlainText(in.readAll());
 }
 
 void ModifyFile::on_bSaveChanges_clicked()
 {
-    QTextStream out(&file);
+    QTextStream out(&m_file);
     out << ui->text->toPlainText();
     delete this;
 }

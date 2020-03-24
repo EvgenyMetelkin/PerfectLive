@@ -1,5 +1,6 @@
 #include "diarywidget.h"
 #include "ui_diarywidget.h"
+#include "Global/settings.h"
 
 #include <QDebug>
 #include <QFileDialog>
@@ -9,16 +10,15 @@ DiaryWidget::DiaryWidget(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::DiaryWidget)
 {
-    QSettings settings(ORGANIZATION_NAME, APPLICATION_NAME);
-
-    connect(this, &DiaryWidget::showOpenOldFileWidget, &openOldFileWidget, &OpenOldFileWidget::onShowOpenOldFileWidget);
-    connect(&openOldFileWidget, &OpenOldFileWidget::signalOpenFile, this, &DiaryWidget::onOpenFile);
+    connect(this, &DiaryWidget::ShowOpenOldFileWidget, &m_openOldFileWidget, &OpenOldFileWidget::OnShowOpenOldFileWidget);
+    connect(&m_openOldFileWidget, &OpenOldFileWidget::SignalOpenFile, this, &DiaryWidget::OnOpenFile);
 
     ui->setupUi(this);
 
-    dir = settings.value(SETTINGS_DIR, QDir::currentPath() + "/data").toString();
-    if (!dir.exists()) {
-        dir.mkpath(dir.absolutePath());
+    m_dir = Settings::get(Settings::DiaryPath, Settings::General).toString();
+    if(m_dir.absolutePath() == "") {
+        on_setBasePath_triggered();
+        m_dir = Settings::get(Settings::DiaryPath, Settings::General).toString();
     }
 
     ui->Date->setDate(QDate::currentDate());
@@ -26,23 +26,23 @@ DiaryWidget::DiaryWidget(QWidget *parent) :
 
 DiaryWidget::~DiaryWidget()
 {
-    foreach (auto modifyFile, listModifyFiles) { // !? память освобождается только при закрытии приложения
+    foreach (auto modifyFile, m_listModifyFiles) { // !! память освобождается только при закрытии приложения
         delete modifyFile;
     }
     delete ui;
 }
 
 
-void DiaryWidget::onOpenFile(QString &path)
+void DiaryWidget::OnOpenFile(QString &path)
 {
     ModifyFile *modifyFile = new ModifyFile(path);
-    listModifyFiles.append(modifyFile);
-    openOldFileWidget.hide();
+    m_listModifyFiles.append(modifyFile);
+    m_openOldFileWidget.hide();
 }
 
 void DiaryWidget::on_Save_clicked()
 {
-    QString fileName = dir.absolutePath() + "/" + ui->Date->text() + ".png";
+    QString fileName = m_dir.absolutePath() + "/" + ui->Date->text() + ".png";
 
     if(QFile::exists(fileName)) {
         ui->Info->setText("Error: the file " + fileName + " is not unique...");
@@ -65,25 +65,21 @@ void DiaryWidget::on_Save_clicked()
 
 void DiaryWidget::on_setBasePath_triggered()
 {
-    dir = QDir::currentPath() + "/data";
-    if (!dir.exists()) {
-        dir.mkpath(dir.absolutePath());
+    m_dir = QDir::currentPath() + "/data";
+    if (!m_dir.exists()) {
+        m_dir.mkpath(m_dir.absolutePath());
     }
-    QSettings settings(ORGANIZATION_NAME, APPLICATION_NAME);
-    settings.setValue(SETTINGS_DIR, dir.absolutePath());
-    settings.sync();
+    Settings::set(Settings::DiaryPath, Settings::General) = m_dir.absolutePath();
 }
 
 void DiaryWidget::on_changPath_triggered()
 {
-    dir = QFileDialog::getExistingDirectory(nullptr, "ChangePath", dir.absolutePath());
-    QSettings settings(ORGANIZATION_NAME, APPLICATION_NAME);
-    settings.setValue(SETTINGS_DIR, dir.absolutePath());
-    settings.sync();
+    m_dir = QFileDialog::getExistingDirectory(nullptr, "ChangePath", m_dir.absolutePath());
+    Settings::set(Settings::DiaryPath, Settings::General) = m_dir.absolutePath();
 }
 
 
 void DiaryWidget::on_openOldFile_clicked()
 {
-    emit showOpenOldFileWidget(dir);
+    emit ShowOpenOldFileWidget(m_dir);
 }

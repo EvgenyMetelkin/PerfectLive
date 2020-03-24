@@ -7,16 +7,16 @@
 Settings::Settings(){
     const QMetaObject &mo = staticMetaObject;
     int idx = mo.indexOfEnumerator("Key");
-    keys = mo.enumerator(idx);
+    m_keys = mo.enumerator(idx);
 
     idx = mo.indexOfEnumerator("Section");
-    sections = mo.enumerator(idx);
+    m_sections = mo.enumerator(idx);
 }
 
 QVariant Settings::get(Key k, Section s){
     Settings &self = instance();
     QString key = self.keyPath(s, k);
-    return self.conf.value(key, self.defaults[key]);
+    return self.m_conf.value(key, self.m_defaults[key]);
 }
 
 Settings::ValueRef Settings::set(Key k, Section s){
@@ -38,11 +38,11 @@ void Settings::setDefaults(const QString &str){
             QString key = rxRecord.cap(4);
             QString value = rxRecord.cap(5);
 
-            int iKey = self.keys.keyToValue(key.toLocal8Bit().data());
+            int iKey = self.m_keys.keyToValue(key.toLocal8Bit().data());
             if(iKey != -1){
-                int iSection = self.sections.keyToValue(section.toLocal8Bit().data());
+                int iSection = self.m_sections.keyToValue(section.toLocal8Bit().data());
                 if(section.isEmpty() || iSection != -1){
-                    self.defaults[rxRecord.cap(1)] = value;
+                    self.m_defaults[rxRecord.cap(1)] = value;
                 }
             }
         }
@@ -51,14 +51,14 @@ void Settings::setDefaults(const QString &str){
 
 //Settings::ValueRef-----------------------------------------------------------
 Settings::ValueRef & Settings::ValueRef::operator = (const QVariant &data){
-    parent.conf.setValue(keyPath, data);
+    m_parent.m_conf.setValue(m_keyPath, data);
     return *this;
 }
 
 //PRIVATE METHODS--------------------------------------------------------------
 QString Settings::keyPath(Section s, Key k){
-    auto szSection = sections.valueToKey(s);
-    auto szKey = keys.valueToKey(k);
+    auto szSection = m_sections.valueToKey(s);
+    auto szKey = m_keys.valueToKey(k);
     return QString(s == General ? "%1" : "%2/%1").arg(szKey).arg(szSection);
 }
 

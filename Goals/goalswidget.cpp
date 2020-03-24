@@ -9,7 +9,7 @@ GoalsWidget::GoalsWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GoalsWidget),
     m_goalsFileName("goals/goals.png"),
-    subgoalCounter(0)
+    m_subgoalCounter(0)
 {
     ui->setupUi(this);
 
@@ -43,9 +43,9 @@ void GoalsWidget::ParseGoalFile()
 void GoalsWidget::ParseGoalsLine(const QString &goalsLine)
 {
     if(goalsLine.startsWith("*")) {
-        ui->pteGoals->appendPlainText(QString("    %1").arg(++subgoalCounter) + ") " + goalsLine);
+        ui->pteGoals->appendPlainText(QString("    %1").arg(++m_subgoalCounter) + ") " + goalsLine);
     } else {
-        subgoalCounter = 0;
+        m_subgoalCounter = 0;
         ui->pteGoals->appendPlainText(goalsLine);
     }
 }

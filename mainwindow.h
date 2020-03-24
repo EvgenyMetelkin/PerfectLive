@@ -7,6 +7,10 @@
 #include "Diary/diarywidget.h"
 #include "Goals/goalswidget.h"
 
+#define ORGANIZATION_NAME "OOO EvgMet"
+#define ORGANIZATION_DOMAIN "www.evg_met.ru"
+#define APPLICATION_NAME "PerfectLive"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

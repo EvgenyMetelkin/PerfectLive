@@ -13,13 +13,13 @@ public:
      FileButton(QString &path, QWidget *parent = nullptr);
 
 signals:
-    void signalOpenFile(QString &path);
+    void SignalOpenFile(QString &path);
 
 public slots:
-    void clickFileButton();
+    void ClickFileButton();
 
 private:
-    QString path;
+    QString m_path;
 };
 
 
@@ -36,22 +36,22 @@ public:
     ~OpenOldFileWidget();
 
 signals:
-    void signalOpenFile(QString &path);
+    void SignalOpenFile(QString &path);
 
 public slots:
-    void onShowOpenOldFileWidget(QDir &dir);
+    void OnShowOpenOldFileWidget(QDir &dir);
 
 private slots:
     void on_cancel_clicked();
 
 private:
-    void findFile(QDir &dir);
-    void appendListFilesToWidget();
+    void FindFile(QDir &dir);
+    void AppendListFilesToWidget();
 
 private:
     Ui::OpenOldFileWidget *ui;
-    QStringList listFiles;
-    QList<FileButton*> listFileButton;
+    QStringList m_listFiles;
+    QList<FileButton*> m_listFileButton;
 };
 
 #endif // OPENOLDFILEWIDGET_H

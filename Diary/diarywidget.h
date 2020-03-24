@@ -2,18 +2,11 @@
 #define DIARYWIDGET_H
 
 #include <QMainWindow>
-#include <QSettings>
 
 #include "openoldfilewidget.h"
 #include "modifyfile.h"
 
 #include <QDir>
-
-#define ORGANIZATION_NAME "OOO EvgMet"
-#define ORGANIZATION_DOMAIN "www.evg_met.ru"
-#define APPLICATION_NAME "PerfectLive"
-
-#define SETTINGS_DIR "settings/dir"
 
 namespace Ui {
 class DiaryWidget;
@@ -28,10 +21,10 @@ public:
     ~DiaryWidget();
 
 signals:
-    void showOpenOldFileWidget(QDir &dir);
+    void ShowOpenOldFileWidget(QDir &m_dir);
 
 public slots:
-    void onOpenFile(QString &path);
+    void OnOpenFile(QString &path);
 
 private slots:
     void on_Save_clicked();
@@ -42,9 +35,9 @@ private slots:
 
 private:
     Ui::DiaryWidget *ui;
-    OpenOldFileWidget openOldFileWidget;
-    QList<ModifyFile *> listModifyFiles;
-    QDir dir;
+    OpenOldFileWidget m_openOldFileWidget;
+    QList<ModifyFile *> m_listModifyFiles;
+    QDir m_dir;
 };
 
 #endif // DIARYWIDGET_H

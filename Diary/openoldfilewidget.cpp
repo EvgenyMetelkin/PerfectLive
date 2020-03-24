@@ -3,16 +3,16 @@
 
 #include <QDebug>
 
-FileButton::FileButton(QString &_path, QWidget *parent)
+FileButton::FileButton(QString &path, QWidget *parent)
     : QPushButton(parent)
 {
-    path = _path;
-    connect(this, &FileButton::clicked, this, &FileButton::clickFileButton);
+    m_path = path;
+    connect(this, &FileButton::clicked, this, &FileButton::ClickFileButton);
 }
 
-void FileButton::clickFileButton()
+void FileButton::ClickFileButton()
 {
-    emit signalOpenFile(path);
+    emit SignalOpenFile(m_path);
 }
 
 ///////////////////////////////////////////////////////
@@ -24,26 +24,26 @@ OpenOldFileWidget::OpenOldFileWidget(QWidget *parent) :
     ui->setupUi(this);
 }
 
-OpenOldFileWidget::~OpenOldFileWidget() // !? не вызывается диструктор если нажать на крест
+OpenOldFileWidget::~OpenOldFileWidget() // !! не вызывается диструктор если нажать на крест
 {
-    foreach(auto btn, listFileButton)
+    foreach(auto btn, m_listFileButton)
         delete btn;
     delete ui;
 }
 
-void OpenOldFileWidget::onShowOpenOldFileWidget(QDir &dir)
+void OpenOldFileWidget::OnShowOpenOldFileWidget(QDir &dir)
 {
-    listFiles.clear();
-    foreach (auto btn, listFileButton) {
+    m_listFiles.clear();
+    foreach (auto btn, m_listFileButton) {
         delete btn;
     }
-    listFileButton.clear();
-    findFile(dir);
-    appendListFilesToWidget();
+    m_listFileButton.clear();
+    FindFile(dir);
+    AppendListFilesToWidget();
     this->show();
 }
 
-void OpenOldFileWidget::findFile(QDir &dir)
+void OpenOldFileWidget::FindFile(QDir &dir) // ! лучше переместить в filedirutils
 {
     QStringList listDirs = dir.entryList(QDir::Dirs |
                                          QDir::AllDirs |
@@ -52,23 +52,23 @@ void OpenOldFileWidget::findFile(QDir &dir)
     QStringList bufListFiles = dir.entryList(QDir::Files);
     QString absolutePath = dir.absolutePath();
     foreach(QString file, bufListFiles)
-        listFiles.append(absolutePath + "/" + file);
+        m_listFiles.append(absolutePath + "/" + file);
 
     //Для папок делаем рекурсивный вызов
     foreach (QString entry, listDirs) {
         QString entryAbsPath = dir.absolutePath() + "/" + entry;
         QDir dr(entryAbsPath);
-        findFile(dr);
+        FindFile(dr);
     }
 }
 
-void OpenOldFileWidget::appendListFilesToWidget()
+void OpenOldFileWidget::AppendListFilesToWidget()
 {
-    foreach (QString file, listFiles) {
+    foreach (QString file, m_listFiles) {
         FileButton *btn = new FileButton(file);
-        listFileButton.append(btn);
+        m_listFileButton.append(btn);
         btn->setText(file);
-        connect(btn, &FileButton::signalOpenFile, this, &OpenOldFileWidget::signalOpenFile);
+        connect(btn, &FileButton::SignalOpenFile, this, &OpenOldFileWidget::SignalOpenFile);
         ui->fileLayout->addWidget(btn);
     }
 }
