@@ -13,7 +13,10 @@ DiaryWidget::DiaryWidget(QWidget *parent) :
     connect(this, &DiaryWidget::ShowOpenOldFileWidget, &m_openOldFileWidget, &OpenOldFileWidget::OnShowOpenOldFileWidget);
     connect(&m_openOldFileWidget, &OpenOldFileWidget::SignalOpenFile, this, &DiaryWidget::OnOpenFile);
 
+    connect(&m_rewriteDialog, &RewriteDialog::accepted, this, &DiaryWidget::SaveFile);
+
     ui->setupUi(this);
+    m_rewriteDialog.hide();
 
     m_dir = Settings::get(Settings::DiaryPath, Settings::General).toString();
     if(m_dir.absolutePath() == "") {
@@ -40,15 +43,10 @@ void DiaryWidget::OnOpenFile(QString &path)
     m_openOldFileWidget.hide();
 }
 
-void DiaryWidget::on_Save_clicked()
+void DiaryWidget::SaveFile()
 {
+    qDebug() << Q_FUNC_INFO;
     QString fileName = m_dir.absolutePath() + "/" + ui->Date->text() + ".png";
-
-    if(QFile::exists(fileName)) {
-        ui->Info->setText("Error: the file " + fileName + " is not unique...");
-        ui->Info->setStyleSheet("background-color: #ff7a5c");
-        return;
-    }
 
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -61,6 +59,20 @@ void DiaryWidget::on_Save_clicked()
 
     ui->Info->setText("File: " + fileName + " saved.");
     ui->Info->setStyleSheet("background-color: #75ffb8");
+}
+
+void DiaryWidget::on_Save_clicked()
+{
+    QString fileName = m_dir.absolutePath() + "/" + ui->Date->text() + ".png";
+
+    if(QFile::exists(fileName)) {
+        ui->Info->setText("Error: the file " + fileName + " is not unique...");
+        ui->Info->setStyleSheet("background-color: #ff7a5c");
+        m_rewriteDialog.show();
+        return;
+    }
+
+    SaveFile();
 }
 
 void DiaryWidget::on_setBasePath_triggered()

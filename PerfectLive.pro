@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Diary/diarywidget.cpp \
+    Diary/rewritedialog.cpp \
     Global/filedirutils.cpp \
     Global/settings.cpp \
     Goals/goalswidget.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 
 HEADERS += \
     Diary/diarywidget.h \
+    Diary/rewritedialog.h \
     Global/filedirutils.h \
     Global/settings.h \
     Goals/goalswidget.h \
@@ -40,6 +42,7 @@ HEADERS += \
 
 FORMS += \
     Diary/diarywidget.ui \
+    Diary/rewritedialog.ui \
     Goals/goalswidget.ui \
     mainwindow.ui \
     Diary/modifyfile.ui \
