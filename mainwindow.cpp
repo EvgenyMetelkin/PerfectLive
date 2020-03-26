@@ -43,3 +43,8 @@ void MainWindow::on_bGoals_clicked()
     this->hide();
     m_goalsWidget.show();
 }
+
+void MainWindow::on_bChangeWiseLine_clicked()
+{
+    ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
+}

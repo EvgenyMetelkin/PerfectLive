@@ -18,8 +18,6 @@ QString WiseLineParser::GetWiseLine()
     int countLine = in.readLine().toInt();
     int randomLine = RandomBetween(1, countLine);
 
-    qDebug() << "countLine " << countLine << "randomLine " << randomLine;
-
     QString wiseLine = "";
 
     for (int i = 0; i < randomLine && !in.atEnd(); ++i) {

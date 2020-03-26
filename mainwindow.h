@@ -31,6 +31,8 @@ private slots:
 
     void on_bGoals_clicked();
 
+    void on_bChangeWiseLine_clicked();
+
 private:
     void ShowMainWindow();
 
