@@ -27,6 +27,11 @@ void MainWindow::ShowMainWindow()
     this->show();
 }
 
+void MainWindow::ViewChartOfEarned()
+{
+     ui->gridLayout->addWidget(m_chartOfEarned.getChart());
+}
+
 void MainWindow::ConfirmedPassword()
 {
     ShowMainWindow();

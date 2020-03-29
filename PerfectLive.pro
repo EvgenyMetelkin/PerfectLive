@@ -1,4 +1,4 @@
-QT       += core gui #sql
+QT += core gui charts #sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Diary/diarywidget.cpp \
     Diary/rewritedialog.cpp \
+    Earned/chartofearned.cpp \
     Global/filedirutils.cpp \
     Global/settings.cpp \
     Goals/goalswidget.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 HEADERS += \
     Diary/diarywidget.h \
     Diary/rewritedialog.h \
+    Earned/chartofearned.h \
     Global/filedirutils.h \
     Global/settings.h \
     Goals/goalswidget.h \

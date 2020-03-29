@@ -6,6 +6,7 @@
 #include "Password/passwordwidget.h"
 #include "Diary/diarywidget.h"
 #include "Goals/goalswidget.h"
+#include "Earned/chartofearned.h"
 
 #define ORGANIZATION_NAME "OOO EvgMet"
 #define ORGANIZATION_DOMAIN "www.evg_met.ru"
@@ -35,11 +36,13 @@ private slots:
 
 private:
     void ShowMainWindow();
+    void ViewChartOfEarned();
 
 private:
     Ui::MainWindow *ui;
     PasswordWidget m_passwordWidget;
     DiaryWidget m_diaryWidget;
     GoalsWidget m_goalsWidget;
+    ChartOfEarned m_chartOfEarned;
 };
 #endif // MAINWINDOW_H
