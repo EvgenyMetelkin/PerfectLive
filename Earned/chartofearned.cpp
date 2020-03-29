@@ -60,5 +60,4 @@ QChartView *ChartOfEarned::getChart()
     return chartView;
 }
 
-#include "moc_chartofearned.cpp"
 
