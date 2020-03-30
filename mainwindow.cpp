@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&m_passwordWidget, &PasswordWidget::ConfirmedPassword, this, &MainWindow::ConfirmedPassword);
 
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
+    connect(&m_timerWiseLine, &QTimer::timeout, this, &MainWindow::NextWiseLine);
+    m_timerWiseLine.start(100000);
 }
 
 MainWindow::~MainWindow()
@@ -45,6 +47,11 @@ void MainWindow::on_bGoals_clicked()
 }
 
 void MainWindow::on_bChangeWiseLine_clicked()
+{
+    ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
+}
+
+void MainWindow::NextWiseLine()
 {
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }

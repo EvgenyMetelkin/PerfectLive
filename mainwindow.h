@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 
 #include "Password/passwordwidget.h"
 #include "Diary/diarywidget.h"
@@ -28,10 +29,10 @@ public slots:
 
 private slots:
     void on_bDiary_clicked();
-
     void on_bGoals_clicked();
-
     void on_bChangeWiseLine_clicked();
+
+    void NextWiseLine();
 
 private:
     void ShowMainWindow();
@@ -41,5 +42,7 @@ private:
     PasswordWidget m_passwordWidget;
     DiaryWidget m_diaryWidget;
     GoalsWidget m_goalsWidget;
+
+    QTimer m_timerWiseLine;
 };
 #endif // MAINWINDOW_H
