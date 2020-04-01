@@ -7,6 +7,7 @@
 #include "Password/passwordwidget.h"
 #include "Diary/diarywidget.h"
 #include "Goals/goalswidget.h"
+#include "Income/incomeview.h"
 
 #define ORGANIZATION_NAME "OOO EvgMet"
 #define ORGANIZATION_DOMAIN "www.evg_met.ru"
@@ -36,13 +37,14 @@ private slots:
 
 private:
     void ShowMainWindow();
+    void ViewIncome();
 
 private:
     Ui::MainWindow *ui;
     PasswordWidget m_passwordWidget;
     DiaryWidget m_diaryWidget;
     GoalsWidget m_goalsWidget;
-
     QTimer m_timerWiseLine;
+    IncomeView *m_incomeView;
 };
 #endif // MAINWINDOW_H

@@ -5,7 +5,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_incomeView(new IncomeView(this))
 {
     ui->setupUi(this);
 
@@ -16,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
     connect(&m_timerWiseLine, &QTimer::timeout, this, &MainWindow::NextWiseLine);
     m_timerWiseLine.start(100000);
+
+    ViewIncome();
 }
 
 MainWindow::~MainWindow()
@@ -27,6 +30,11 @@ void MainWindow::ShowMainWindow()
 {
     m_passwordWidget.hide();
     this->show();
+}
+
+void MainWindow::ViewIncome()
+{
+    ui->gridLayout->addWidget(m_incomeView->GetIncomeView());
 }
 
 void MainWindow::ConfirmedPassword()

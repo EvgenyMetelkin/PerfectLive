@@ -1,4 +1,4 @@
-QT       += core gui #sql
+QT       += core gui charts #sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,6 +21,7 @@ SOURCES += \
     Global/filedirutils.cpp \
     Global/settings.cpp \
     Goals/goalswidget.cpp \
+    Income/incomeview.cpp \
     main.cpp \
     mainwindow.cpp \
     Diary/modifyfile.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     Global/filedirutils.h \
     Global/settings.h \
     Goals/goalswidget.h \
+    Income/incomeview.h \
     mainwindow.h \
     Diary/modifyfile.h \
     Diary/openoldfilewidget.h \
