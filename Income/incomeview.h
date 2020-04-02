@@ -1,7 +1,9 @@
 #ifndef INCOMEVIEW_H
 #define INCOMEVIEW_H
 
+#include <QList>
 #include <QtCharts/QChartView>
+#include <QtCharts/QBarSet>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -14,10 +16,13 @@ public:
     QChartView* GetIncomeView();
 
 private:
+    void Initialize();
     void CreateChart();
 
 private:
     QChartView *m_incomeView;
+    QList<QBarSet*> m_listBarSet;
+    QBarSet set0;
 };
 
 #endif // INCOMEVIEW_H
