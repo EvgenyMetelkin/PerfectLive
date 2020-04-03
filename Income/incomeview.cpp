@@ -1,16 +1,16 @@
 #include "incomeview.h"
 
-#include <QtCharts/QStackedBarSeries>
-#include <QtCharts/QLegend>
-#include <QtCharts/QBarCategoryAxis>
-#include <QtCharts/QValueAxis>
 
 #define COUNT_MOUNT 12
 
 IncomeView::IncomeView(QWidget *parent) :
     QObject(parent),
     m_incomeView(new QChartView),
-    set0("Jane")
+    set0("Зарплата"),
+    set1("ФА"),
+    set2("Алименты"),
+    set3("Вклады"),
+    set4("Другое")
 {
     CreateChart();
 }
@@ -18,11 +18,7 @@ IncomeView::IncomeView(QWidget *parent) :
 IncomeView::~IncomeView()
 {
     if(m_incomeView)
-        delete m_incomeView;
-
-    for(auto barSet : m_listBarSet) {
-        delete barSet;
-    }
+        delete m_incomeView; 
 }
 
 QChartView *IncomeView::GetIncomeView()
@@ -32,76 +28,40 @@ QChartView *IncomeView::GetIncomeView()
 
 void IncomeView::Initialize()
 {
-    m_listBarSet[0] = new QBarSet("Jan");
-    m_listBarSet[1] = new QBarSet("Feb");
-    m_listBarSet[2] = new QBarSet("Mar");
-    m_listBarSet[3] = new QBarSet("Apr");
-    m_listBarSet[4] = new QBarSet("May");
-    m_listBarSet[5] = new QBarSet("Jun");
-    m_listBarSet[6] = new QBarSet("Jul");
-    m_listBarSet[7] = new QBarSet("Aug");
-    m_listBarSet[8] = new QBarSet("Sept");
-    m_listBarSet[9] = new QBarSet("Oct");
-    m_listBarSet[10] = new QBarSet("Nov");
-    m_listBarSet[11] = new QBarSet("Dec");
+    set0 << 10000 << 20000 << 30000 << 40000 << 50000 << 60000;
+    set1 << 50000 << 00000 << 00000 << 40000 << 00000 << 70000;
+    set2 << 30000 << 50000 << 80000 << 130000 << 80000 << 50000;
+    set3 << 50000 << 60000 << 70000 << 30000 << 40000 << 50000;
+    set4 << 90000 << 70000 << 50000 << 30000 << 10000 << 20000;
 }
 
 void IncomeView::CreateChart()
 {
-    //Initialize();
+    Initialize();
 
-//    m_listBarSet[0] << 1 << 2 << 3 << 4 << 5 << 6;
-//    m_listBarSet[1] << 5 << 0 << 0 << 4 << 0 << 7;
-//    m_listBarSet[2] << 3 << 5 << 8 << 13 << 8 << 5;
-//    m_listBarSet[3] << 5 << 6 << 7 << 3 << 4 << 5;
-//    m_listBarSet[4] << 9 << 7 << 5 << 3 << 1 << 2;
+    series.append(&set0);
+    series.append(&set1);
+    series.append(&set2);
+    series.append(&set3);
+    series.append(&set4);
 
-    QBarSet *set1 = new QBarSet("John");
-    QBarSet *set2 = new QBarSet("Axel");
-    QBarSet *set3 = new QBarSet("Mary");
-    QBarSet *set4 = new QBarSet("Samantha");
+    chart.addSeries(&series);
+    chart.setTitle("Income 2020");
+    chart.setAnimationOptions(QChart::SeriesAnimations);
 
-    set0 << 1 << 2 << 3 << 4 << 5 << 6;
-    *set1 << 5 << 0 << 0 << 4 << 0 << 7;
-    *set2 << 3 << 5 << 8 << 13 << 8 << 5;
-    *set3 << 5 << 6 << 7 << 3 << 4 << 5;
-    *set4 << 9 << 7 << 5 << 3 << 1 << 2;
-
-
-    QStackedBarSeries *series = new QStackedBarSeries();
-    series->append(&set0);
-    series->append(set1);
-    series->append(set2);
-    series->append(set3);
-    series->append(set4);
-    //![2]
-
-    //![3]
-    QChart *chart = new QChart();
-    chart->addSeries(series);
-    chart->setTitle("Simple stackedbarchart example");
-    chart->setAnimationOptions(QChart::SeriesAnimations);
-    //![3]
-
-    //![4]
     QStringList categories;
-    categories << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun";
-    QBarCategoryAxis *axisX = new QBarCategoryAxis();
-    axisX->append(categories);
-    chart->addAxis(axisX, Qt::AlignBottom);
-    series->attachAxis(axisX);
-    QValueAxis *axisY = new QValueAxis();
-    chart->addAxis(axisY, Qt::AlignLeft);
-    series->attachAxis(axisY);
-    //![4]
+    categories << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun" << "Aug" << "Sept" << "Oct" << "Nov" << "Dec";
 
-    //![5]
-    chart->legend()->setVisible(true);
-    chart->legend()->setAlignment(Qt::AlignBottom);
-    //![5]
+    axisX.append(categories);
+    chart.addAxis(&axisX, Qt::AlignBottom);
+    series.attachAxis(&axisX);
 
-    //![6]
-    m_incomeView->setChart(chart);
+    chart.addAxis(&axisY, Qt::AlignLeft);
+    series.attachAxis(&axisY);
+
+    chart.legend()->setVisible(true);
+    chart.legend()->setAlignment(Qt::AlignBottom);
+
+    m_incomeView->setChart(&chart);
     m_incomeView->setRenderHint(QPainter::Antialiasing);
-    //![6]
 }
