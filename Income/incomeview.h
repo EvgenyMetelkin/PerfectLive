@@ -24,15 +24,15 @@ private:
 
 private:
     QChartView *m_incomeView;
-    QBarSet set0;
-    QBarSet set1;
-    QBarSet set2;
-    QBarSet set3;
-    QBarSet set4;
-    QStackedBarSeries series;
-    QChart chart;
-    QBarCategoryAxis axisX;
-    QValueAxis axisY;
+    QBarSet m_set0;
+    QBarSet m_set1;
+    QBarSet m_set2;
+    QBarSet m_set3;
+    QBarSet m_set4;
+    QStackedBarSeries m_series;
+    QChart m_chart;
+    QBarCategoryAxis m_axisX;
+    QValueAxis m_axisY;
 };
 
 #endif // INCOMEVIEW_H
