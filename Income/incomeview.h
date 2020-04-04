@@ -33,6 +33,7 @@ private:
     QChart m_chart;
     QBarCategoryAxis m_axisX;
     QValueAxis m_axisY;
+    int m_countMount;
 };
 
 #endif // INCOMEVIEW_H

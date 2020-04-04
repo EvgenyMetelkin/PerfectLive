@@ -1,8 +1,5 @@
 #include "incomeview.h"
 
-
-#define COUNT_MOUNT 12
-
 IncomeView::IncomeView(QWidget *parent) :
     QObject(parent),
     m_incomeView(new QChartView),
@@ -18,7 +15,7 @@ IncomeView::IncomeView(QWidget *parent) :
 IncomeView::~IncomeView()
 {
     if(m_incomeView)
-        delete m_incomeView; 
+        delete m_incomeView;
 }
 
 QChartView *IncomeView::GetIncomeView()
@@ -33,6 +30,8 @@ void IncomeView::Initialize()
     m_set2 << 18000 << 18000 << 18000;
     m_set3 << 80 << 137 << 254;
     m_set4 << 7000 << 0 << 0;
+
+    m_countMount = 4;
 }
 
 void IncomeView::CreateChart()
@@ -50,7 +49,33 @@ void IncomeView::CreateChart()
     m_chart.setAnimationOptions(QChart::SeriesAnimations);
 
     QStringList categories;
-    categories << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun" << "Aug" << "Sept" << "Oct" << "Nov" << "Dec";
+
+    switch(m_countMount) {
+    case 12:
+        categories.push_front("Dec");
+    case 11:
+        categories.push_front("Nov");
+    case 10:
+        categories.push_front("Oct");
+    case 9:
+        categories.push_front("Sept");
+    case 8:
+        categories.push_front("Aug");
+    case 7:
+        categories.push_front("Jul");
+    case 6:
+        categories.push_front("Jun");
+    case 5:
+        categories.push_front("May");
+    case 4:
+        categories.push_front("Apr");
+    case 3:
+        categories.push_front("Mar");
+    case 2:
+        categories.push_front("Feb");
+    case 1:
+        categories.push_front("Jan");
+    }
 
     m_axisX.append(categories);
     m_chart.addAxis(&m_axisX, Qt::AlignBottom);
