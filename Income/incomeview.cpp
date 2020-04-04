@@ -53,27 +53,27 @@ void IncomeView::CreateChart()
     switch(m_countMount) {
     case 12:
         categories.push_front("Dec");
-    case 11:
+    [[clang::fallthrough]]; case 11:
         categories.push_front("Nov");
-    case 10:
+    [[clang::fallthrough]]; case 10:
         categories.push_front("Oct");
-    case 9:
+    [[clang::fallthrough]]; case 9:
         categories.push_front("Sept");
-    case 8:
+    [[clang::fallthrough]]; case 8:
         categories.push_front("Aug");
-    case 7:
+    [[clang::fallthrough]]; case 7:
         categories.push_front("Jul");
-    case 6:
+    [[clang::fallthrough]]; case 6:
         categories.push_front("Jun");
-    case 5:
+    [[clang::fallthrough]]; case 5:
         categories.push_front("May");
-    case 4:
+    [[clang::fallthrough]]; case 4:
         categories.push_front("Apr");
-    case 3:
+    [[clang::fallthrough]]; case 3:
         categories.push_front("Mar");
-    case 2:
+    [[clang::fallthrough]]; case 2:
         categories.push_front("Feb");
-    case 1:
+    [[clang::fallthrough]]; case 1:
         categories.push_front("Jan");
     }
 
