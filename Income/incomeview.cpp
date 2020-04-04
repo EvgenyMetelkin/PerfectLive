@@ -1,13 +1,17 @@
 #include "incomeview.h"
 
+#include <QTextStream>
+#include <QDebug>
+
 IncomeView::IncomeView(QWidget *parent) :
     QObject(parent),
     m_incomeView(new QChartView),
-    m_set0("Зарплата"),
-    m_set1("ФА"),
-    m_set2("Алименты"),
-    m_set3("Вклады"),
-    m_set4("Другое")
+    m_setSalary("Зарплата"),
+    m_setFA("ФА"),
+    m_setAlimony("Алименты"),
+    m_setPassiveIncome("Пасивный доход"),
+    m_setOther("Другое"),
+    m_countMount(0)
 {
     CreateChart();
 }
@@ -25,24 +29,38 @@ QChartView *IncomeView::GetIncomeView()
 
 void IncomeView::Initialize()
 {
-    m_set0 << 37020 << 50828 << 54600;
-    m_set1 << 35172 << 36804 << 60531;
-    m_set2 << 18000 << 18000 << 18000;
-    m_set3 << 80 << 137 << 254;
-    m_set4 << 7000 << 0 << 0;
+    QFile file(":/personalInformation/earn.txt");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
 
-    m_countMount = 4;
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        in.readLine();
+        int mount, salary, fa, alimony, passiveIncome, other;
+        in >> mount >> salary >> fa >> alimony >> passiveIncome >> other;
+        if((salary + fa + alimony + passiveIncome + other) != 0) {
+            m_setSalary << salary;
+            m_setFA << fa;
+            m_setAlimony << alimony;
+            m_setPassiveIncome << passiveIncome;
+            m_setOther << other;
+        } else {
+            m_countMount = mount;
+            break;
+        }
+    }
+    file.close();
 }
 
 void IncomeView::CreateChart()
 {
     Initialize();
 
-    m_series.append(&m_set0);
-    m_series.append(&m_set1);
-    m_series.append(&m_set2);
-    m_series.append(&m_set3);
-    m_series.append(&m_set4);
+    m_series.append(&m_setSalary);
+    m_series.append(&m_setFA);
+    m_series.append(&m_setAlimony);
+    m_series.append(&m_setPassiveIncome);
+    m_series.append(&m_setOther);
 
     m_chart.addSeries(&m_series);
     m_chart.setTitle("Income 2020");
@@ -50,6 +68,7 @@ void IncomeView::CreateChart()
 
     QStringList categories;
 
+    //[[clang::fallthrough]]; жуткая вещь, нужна чтобы компилятор не ругался на отсутствие break
     switch(m_countMount) {
     case 12:
         categories.push_front("Dec");

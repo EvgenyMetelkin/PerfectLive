@@ -24,11 +24,11 @@ private:
 
 private:
     QChartView *m_incomeView;
-    QBarSet m_set0;
-    QBarSet m_set1;
-    QBarSet m_set2;
-    QBarSet m_set3;
-    QBarSet m_set4;
+    QBarSet m_setSalary;
+    QBarSet m_setFA;
+    QBarSet m_setAlimony;
+    QBarSet m_setPassiveIncome;
+    QBarSet m_setOther;
     QStackedBarSeries m_series;
     QChart m_chart;
     QBarCategoryAxis m_axisX;
