@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Diary/diarywidget.cpp \
+    Diary/historycreationdiary.cpp \
     Diary/rewritedialog.cpp \
     Global/filedirutils.cpp \
     Global/settings.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 
 HEADERS += \
     Diary/diarywidget.h \
+    Diary/historycreationdiary.h \
     Diary/rewritedialog.h \
     Global/filedirutils.h \
     Global/settings.h \

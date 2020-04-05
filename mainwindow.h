@@ -6,6 +6,7 @@
 
 #include "Password/passwordwidget.h"
 #include "Diary/diarywidget.h"
+#include "Diary/historycreationdiary.h"
 #include "Goals/goalswidget.h"
 #include "Income/incomeview.h"
 
@@ -37,7 +38,8 @@ private slots:
 
 private:
     void ShowMainWindow();
-    void ViewIncome();
+    void ShowIncome();
+    void ShowHistoryDiary();
 
 private:
     Ui::MainWindow *ui;
@@ -46,5 +48,6 @@ private:
     GoalsWidget m_goalsWidget;
     QTimer m_timerWiseLine;
     IncomeView *m_incomeView;
+    HistoryCreationDiary m_historyDiary;
 };
 #endif // MAINWINDOW_H

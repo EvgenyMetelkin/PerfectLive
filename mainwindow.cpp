@@ -6,7 +6,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_incomeView(new IncomeView(this))
+    m_incomeView(new IncomeView(this)),
+    m_historyDiary(this)
 {
     ui->setupUi(this);
 
@@ -18,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&m_timerWiseLine, &QTimer::timeout, this, &MainWindow::NextWiseLine);
     m_timerWiseLine.start(100000);
 
-    ViewIncome();
+    ShowIncome();
 }
 
 MainWindow::~MainWindow()
@@ -33,9 +34,14 @@ void MainWindow::ShowMainWindow()
     this->show();
 }
 
-void MainWindow::ViewIncome()
+void MainWindow::ShowIncome()
 {
     ui->gridLayout->addWidget(m_incomeView);
+}
+
+void MainWindow::ShowHistoryDiary()
+{
+    ui->layoutHistoryDiary->addWidget(&m_historyDiary);
 }
 
 void MainWindow::ConfirmedPassword()
