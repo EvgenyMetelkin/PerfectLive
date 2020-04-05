@@ -4,7 +4,7 @@
 #include <QDebug>
 
 IncomeView::IncomeView(QWidget *parent) :
-    QObject(parent),
+    QChartView(new QChart(), parent),
     m_incomeView(new QChartView),
     m_setSalary("Зарплата"),
     m_setFA("ФА"),
@@ -20,11 +20,6 @@ IncomeView::~IncomeView()
 {
     if(m_incomeView)
         delete m_incomeView;
-}
-
-QChartView *IncomeView::GetIncomeView()
-{
-    return m_incomeView;
 }
 
 void IncomeView::Initialize()
@@ -62,9 +57,9 @@ void IncomeView::CreateChart()
     m_series.append(&m_setPassiveIncome);
     m_series.append(&m_setOther);
 
-    m_chart.addSeries(&m_series);
-    m_chart.setTitle("Income 2020");
-    m_chart.setAnimationOptions(QChart::SeriesAnimations);
+    chart()->addSeries(&m_series);
+    chart()->setTitle("Income 2020");
+    chart()->setAnimationOptions(QChart::SeriesAnimations);
 
     QStringList categories;
 
@@ -97,15 +92,14 @@ void IncomeView::CreateChart()
     }
 
     m_axisX.append(categories);
-    m_chart.addAxis(&m_axisX, Qt::AlignBottom);
+    chart()->addAxis(&m_axisX, Qt::AlignBottom);
     m_series.attachAxis(&m_axisX);
 
-    m_chart.addAxis(&m_axisY, Qt::AlignLeft);
+    chart()->addAxis(&m_axisY, Qt::AlignLeft);
     m_series.attachAxis(&m_axisY);
 
-    m_chart.legend()->setVisible(true);
-    m_chart.legend()->setAlignment(Qt::AlignBottom);
+    chart()->legend()->setVisible(true);
+    chart()->legend()->setAlignment(Qt::AlignBottom);
 
-    m_incomeView->setChart(&m_chart);
     m_incomeView->setRenderHint(QPainter::Antialiasing);
 }

@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete m_incomeView;
 }
 
 void MainWindow::ShowMainWindow()
@@ -34,7 +35,7 @@ void MainWindow::ShowMainWindow()
 
 void MainWindow::ViewIncome()
 {
-    ui->gridLayout->addWidget(m_incomeView->GetIncomeView());
+    ui->gridLayout->addWidget(m_incomeView);
 }
 
 void MainWindow::ConfirmedPassword()

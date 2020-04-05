@@ -10,13 +10,11 @@
 
 QT_CHARTS_USE_NAMESPACE
 
-class IncomeView : public QObject
+class IncomeView : public QChartView
 {
 public:
     explicit IncomeView(QWidget *parent = nullptr);
     ~IncomeView();
-
-    QChartView* GetIncomeView();
 
 private:
     void Initialize();
