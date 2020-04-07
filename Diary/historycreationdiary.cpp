@@ -43,6 +43,8 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
 
 HistoryCreationDiary::~HistoryCreationDiary()
 {
+    delete m_scatter;
+    delete m_scatter2;
 }
 
 
