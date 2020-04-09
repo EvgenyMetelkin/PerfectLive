@@ -48,6 +48,6 @@ private:
     GoalsWidget m_goalsWidget;
     QTimer m_timerWiseLine;
     IncomeView *m_incomeView;
-    HistoryCreationDiary m_historyDiary;
+    HistoryCreationDiary *m_historyDiary;
 };
 #endif // MAINWINDOW_H

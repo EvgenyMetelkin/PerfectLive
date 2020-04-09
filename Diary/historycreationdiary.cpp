@@ -15,7 +15,7 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     setRenderHint(QPainter::Antialiasing);
 
     this->setMinimumSize(900, 170);
-    this->setMaximumSize(900, 170);
+    //this->setMaximumSize(900, 170);
 
     m_scatter = new QScatterSeries();
     m_scatter->setColor(QColor("#e0e0e0"));
