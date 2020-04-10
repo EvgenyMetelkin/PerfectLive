@@ -16,6 +16,9 @@ public:
     ~HistoryCreationDiary();
 
 private:
+    void MarkOfDay(int week, int day);
+
+private:
     QScatterSeries *m_scatter;
     QScatterSeries *m_scatter2;
 };
