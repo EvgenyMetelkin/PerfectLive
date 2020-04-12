@@ -16,9 +16,14 @@
 #define TABLE_DATE          "date"
 #define TABLE_VALUE         "value"
 
-DBHistoryDiary::DBHistoryDiary(QObject *parent) : QObject(parent)
+DBHistoryDiary::DBHistoryDiary(QObject *parent) :
+    QObject(parent)
 {
     OpenDataBase();
+
+    InsertHistoryDiary(1);
+    InsertHistoryDiary(2);
+    SelectAllHistoryDiary();
 }
 
 bool DBHistoryDiary::OpenDataBase()
@@ -56,19 +61,35 @@ bool DBHistoryDiary::CreateTableIfNotExists()
     }
 }
 
-bool DBHistoryDiary::InserIntoTable(const QVariantList &data)
+bool DBHistoryDiary::InsertHistoryDiary(const int value)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO " TABLE " ( " TABLE_DATE ", "
                   TABLE_VALUE " ) "
-                  "VALUES (:date, :value)");
-    query.bindValue(":date",        data[0].toDate());
-    query.bindValue(":value",       data[1].toInt());
+                  "VALUES (date('now','localtime'), :value)");
+    query.bindValue(":value", value);
+
     if(!query.exec()) {
         qDebug() << Q_FUNC_INFO << "error insert into " << TABLE;
         qDebug() << Q_FUNC_INFO << query.lastError().text();
         return false;
     } else {
         return true;
+    }
+}
+
+void DBHistoryDiary::SelectAllHistoryDiary()
+{
+    QSqlQuery query;
+    if(!query.exec( "SELECT * FROM " TABLE
+                    )) {
+        qDebug() << Q_FUNC_INFO << "DataBase: error of create " << TABLE;
+        qDebug() << Q_FUNC_INFO << query.lastError().text();
+    }
+
+    while (query.next()) {
+        QString date = query.value(0).toString();
+        int value = query.value(1).toInt();
+        qDebug() << date << value;
     }
 }

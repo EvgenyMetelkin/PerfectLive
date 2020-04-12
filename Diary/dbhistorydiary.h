@@ -12,7 +12,8 @@ public:
     explicit DBHistoryDiary(QObject *parent = nullptr);
 
     void ConnectToDataBase();
-    bool InserIntoTable(const QVariantList &data);
+    bool InsertHistoryDiary(const int value);
+    void SelectAllHistoryDiary();
 
 private:
     bool OpenDataBase();
