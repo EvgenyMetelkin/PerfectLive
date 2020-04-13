@@ -16,6 +16,7 @@ public:
     ~HistoryCreationDiary();
 
 private:
+    void LoadHistoryDiary();
     void MarkOfDay(int week, int day);
 
 private:

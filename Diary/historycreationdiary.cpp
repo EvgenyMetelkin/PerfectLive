@@ -46,14 +46,19 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     MarkOfDay(1,1);
 
     MarkOfDay(51,0);
-
-    DBHistoryDiary history(this);
 }
 
 HistoryCreationDiary::~HistoryCreationDiary()
 {
     delete m_scatter;
     delete m_scatter2;
+}
+
+void HistoryCreationDiary::LoadHistoryDiary()
+{
+    DBHistoryDiary db(this);
+
+    ////
 }
 
 void HistoryCreationDiary::MarkOfDay(int week, int day)
