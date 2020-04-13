@@ -7,6 +7,8 @@ QT_CHARTS_USE_NAMESPACE
 
 #include <QDebug>
 
+#include "dbhistorydiary.h"
+
 #define COUNT_WEEK 52
 #define COUNT_DAY_ON_WEEK 7
 
@@ -44,6 +46,8 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     MarkOfDay(1,1);
 
     MarkOfDay(51,0);
+
+    DBHistoryDiary history(this);
 }
 
 HistoryCreationDiary::~HistoryCreationDiary()

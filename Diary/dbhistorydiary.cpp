@@ -16,6 +16,7 @@
 #define TABLE_DATE          "date"
 #define TABLE_VALUE         "value"
 
+
 DBHistoryDiary::DBHistoryDiary(QObject *parent) :
     QObject(parent)
 {
