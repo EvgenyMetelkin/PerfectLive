@@ -29,15 +29,15 @@ DBHistoryDiary::DBHistoryDiary(QObject *parent) :
 
 bool DBHistoryDiary::OpenDataBase()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    db = QSqlDatabase::addDatabase("QSQLITE"); // ! перекомпилить sqlite для 64-бит
     db.setHostName(DATABASE_HOSTNAME);
-    db.setDatabaseName(FileDirUtils::GetCurrentPath() + DATABASE_NAME); // !! помести базу в ресурсы
-    CreateTableIfNotExists();
-    if(db.open()){
-        return true;
-    } else {
+    db.setDatabaseName(DATABASE_NAME);
+    if(!db.open()){
+        qDebug() << Q_FUNC_INFO << "Don't open db " DATABASE_NAME;
         return false;
     }
+    CreateTableIfNotExists();
+    return true;
 }
 
 void DBHistoryDiary::CloseDataBase()
@@ -67,7 +67,7 @@ bool DBHistoryDiary::InsertHistoryDiary(const int value)
     QSqlQuery query;
     query.prepare("INSERT INTO " TABLE " ( " TABLE_DATE ", "
                   TABLE_VALUE " ) "
-                  "VALUES (date('now','localtime'), :value)");
+                  "VALUES (date('now'), :value)");
     query.bindValue(":value", value);
 
     if(!query.exec()) {
@@ -89,8 +89,8 @@ void DBHistoryDiary::SelectAllHistoryDiary()
     }
 
     while (query.next()) {
-        QString date = query.value(0).toString();
-        int value = query.value(1).toInt();
+        QString date = query.value(1).toString();
+        int value = query.value(2).toInt();
         qDebug() << date << value;
     }
 }

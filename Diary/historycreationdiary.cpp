@@ -46,6 +46,7 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     MarkOfDay(1,1);
 
     MarkOfDay(51,0);
+    LoadHistoryDiary();
 }
 
 HistoryCreationDiary::~HistoryCreationDiary()
