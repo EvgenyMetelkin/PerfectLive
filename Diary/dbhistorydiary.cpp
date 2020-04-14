@@ -67,7 +67,7 @@ bool DBHistoryDiary::InsertHistoryDiary(const int value)
     QSqlQuery query;
     query.prepare("INSERT INTO " TABLE " ( " TABLE_DATE ", "
                   TABLE_VALUE " ) "
-                  "VALUES (date('now'), :value)");
+                  "VALUES (date('now','localtime'), :value)");
     query.bindValue(":value", value);
 
     if(!query.exec()) {
@@ -82,7 +82,7 @@ bool DBHistoryDiary::InsertHistoryDiary(const int value)
 void DBHistoryDiary::SelectAllHistoryDiary()
 {
     QSqlQuery query;
-    if(!query.exec( "SELECT * FROM " TABLE
+    if(!query.exec( "SELECT * FROM " TABLE " ORDER BY " TABLE_DATE " DESC "
                     )) {
         qDebug() << Q_FUNC_INFO << "DataBase: error of create " << TABLE;
         qDebug() << Q_FUNC_INFO << query.lastError().text();
