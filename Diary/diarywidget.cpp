@@ -1,10 +1,15 @@
 #include "diarywidget.h"
 #include "ui_diarywidget.h"
 #include "Global/settings.h"
+#include "dbhistorydiary.h"
 
 #include <QDebug>
 #include <QFileDialog>
 
+
+#define SIZE_SMALL_TEXT 500
+#define SIZE_MEDIUM_TEXT 750
+#define SIZE_LARGE_TEXT 1000
 
 DiaryWidget::DiaryWidget(QWidget *parent) :
     QMainWindow(parent),
@@ -59,6 +64,8 @@ void DiaryWidget::SaveFile()
 
     ui->Info->setText("File: " + fileName + " saved.");
     ui->Info->setStyleSheet("background-color: #75ffb8");
+
+    AddHistoryInDB();
 }
 
 void DiaryWidget::on_Save_clicked()
@@ -94,4 +101,19 @@ void DiaryWidget::on_changPath_triggered()
 void DiaryWidget::on_openOldFile_clicked()
 {
     emit ShowOpenOldFileWidget(m_dir);
+}
+
+void DiaryWidget::AddHistoryInDB()
+{
+    int sizeText = ui->Text->toPlainText().size();
+    int coefficientTextSize = 0;
+    qDebug() << Q_FUNC_INFO << "Size text: " << sizeText;
+    if(sizeText == 0) { return; }
+    else if(sizeText < SIZE_SMALL_TEXT) coefficientTextSize = 1;
+    else if(sizeText < SIZE_MEDIUM_TEXT) coefficientTextSize = 2;
+    else if(sizeText < SIZE_LARGE_TEXT) coefficientTextSize = 3;
+    else if(sizeText > SIZE_LARGE_TEXT) coefficientTextSize = 4;
+
+    DBHistoryDiary db;
+    db.InsertHistoryDiary(coefficientTextSize);
 }

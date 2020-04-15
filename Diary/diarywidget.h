@@ -36,6 +36,9 @@ private slots:
     void on_openOldFile_clicked();
 
 private:
+    void AddHistoryInDB();
+
+private:
     Ui::DiaryWidget *ui;
     OpenOldFileWidget m_openOldFileWidget;
     RewriteDialog m_rewriteDialog;

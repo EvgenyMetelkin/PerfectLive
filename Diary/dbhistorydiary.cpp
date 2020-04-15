@@ -21,10 +21,6 @@ DBHistoryDiary::DBHistoryDiary(QObject *parent) :
     QObject(parent)
 {
     OpenDataBase();
-
-    InsertHistoryDiary(1);
-    InsertHistoryDiary(2);
-    SelectAllHistoryDiary();
 }
 
 bool DBHistoryDiary::OpenDataBase()
