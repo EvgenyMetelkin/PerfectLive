@@ -14,6 +14,7 @@ public:
     void ConnectToDataBase();
     bool InsertHistoryDiary(const int value);
     void SelectAllHistoryDiary();
+    void SelectYearFromHistoryDiary();
 
 private:
     bool OpenDataBase();

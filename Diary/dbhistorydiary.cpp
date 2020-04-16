@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QDate>
 #include <QDebug>
+#include <QDate>
 
 #include "../Global/filedirutils.h"
 
@@ -89,4 +90,23 @@ void DBHistoryDiary::SelectAllHistoryDiary()
         int value = query.value(2).toInt();
         qDebug() << date << value;
     }
+}
+
+void DBHistoryDiary::SelectYearFromHistoryDiary()
+{
+    QDate date(QDate::currentDate().year() - 1, QDate::currentDate().month(), QDate::currentDate().day());
+    qDebug() << Q_FUNC_INFO << date.toString("yyyy-MM-dd");
+
+//    QSqlQuery query;
+//    if(!query.exec( "SELECT * FROM " TABLE " ORDER BY " TABLE_DATE " DESC "
+//                    )) {
+//        qDebug() << Q_FUNC_INFO << "DataBase: error of create " << TABLE;
+//        qDebug() << Q_FUNC_INFO << query.lastError().text();
+//    }
+
+//    while (query.next()) {
+//        QString date = query.value(1).toString();
+//        int value = query.value(2).toInt();
+//        qDebug() << date << value;
+//    }
 }
