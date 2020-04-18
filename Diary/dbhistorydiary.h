@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QSqlDatabase>
 
-
 class DBHistoryDiary : public QObject
 {
     Q_OBJECT
@@ -15,6 +14,9 @@ public:
     bool InsertHistoryDiary(const int value);
     void SelectAllHistoryDiary();
     void SelectYearFromHistoryDiary();
+
+signals:
+    void ReplyForSelect(QString date, int value);
 
 private:
     bool OpenDataBase();

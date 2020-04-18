@@ -47,8 +47,8 @@ bool DBHistoryDiary::CreateTableIfNotExists()
     QSqlQuery query;
     if(!query.exec( "CREATE TABLE IF NOT EXISTS " TABLE " ("
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    TABLE_DATE      " DATE            NOT NULL,"
-                    TABLE_VALUE     " INTEGER         NOT NULL"
+                    TABLE_DATE      " DATE            NOT NULL      UNIQUE,"
+                    TABLE_VALUE     " INTEGER         NOT NULL      "
                     " )"
                     )) {
         qDebug() << Q_FUNC_INFO << "DataBase: error of create " << TABLE;
@@ -95,18 +95,18 @@ void DBHistoryDiary::SelectAllHistoryDiary()
 void DBHistoryDiary::SelectYearFromHistoryDiary()
 {
     QDate date(QDate::currentDate().year() - 1, QDate::currentDate().month(), QDate::currentDate().day());
-    qDebug() << Q_FUNC_INFO << date.toString("yyyy-MM-dd");
+    //qDebug() << Q_FUNC_INFO << "SELECT * FROM " TABLE " WHERE " TABLE_DATE " > " "date('" + date.toString("yyyy-MM-dd") + "')" " ORDER BY " TABLE_DATE " DESC ";
 
-//    QSqlQuery query;
-//    if(!query.exec( "SELECT * FROM " TABLE " ORDER BY " TABLE_DATE " DESC "
-//                    )) {
-//        qDebug() << Q_FUNC_INFO << "DataBase: error of create " << TABLE;
-//        qDebug() << Q_FUNC_INFO << query.lastError().text();
-//    }
+    QSqlQuery query;
+    if(!query.exec( "SELECT * FROM " TABLE " WHERE " TABLE_DATE " > " "date('" + date.toString("yyyy-MM-dd") + "')" " ORDER BY " TABLE_DATE " DESC "
+                    )) {
+        qDebug() << Q_FUNC_INFO << "DataBase: error of create " << TABLE;
+        qDebug() << Q_FUNC_INFO << query.lastError().text();
+    }
 
-//    while (query.next()) {
-//        QString date = query.value(1).toString();
-//        int value = query.value(2).toInt();
-//        qDebug() << date << value;
-//    }
+    while (query.next()) {
+        QString date = query.value(1).toString();
+        int value = query.value(2).toInt();
+        emit ReplyForSelect(date, value);
+    }
 }

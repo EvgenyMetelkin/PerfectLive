@@ -5,6 +5,7 @@
 
 QT_CHARTS_USE_NAMESPACE
 
+#include <QDate>
 #include <QDebug>
 
 #include "dbhistorydiary.h"
@@ -14,28 +15,42 @@ QT_CHARTS_USE_NAMESPACE
 
 HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     : QChartView(new QChart(), parent),
-      m_scatter(nullptr),
-      m_scatter2(nullptr)
+      m_scatter(new QScatterSeries(this)),
+      m_scatter1(new QScatterSeries(this)),
+      m_scatter2(new QScatterSeries(this)),
+      m_scatter3(new QScatterSeries(this)),
+      m_scatter4(new QScatterSeries(this))
 {
+    c_current_date = QDate::currentDate();
+    c_current_day = c_current_date.dayOfWeek();
+
     setRenderHint(QPainter::Antialiasing);
 
     this->setMinimumSize(900, 170);
 
-    m_scatter = new QScatterSeries();
     m_scatter->setColor(QColor("#e0e0e0"));
 
     qreal offset = 0.5;
     int i = 0, j = 0;
-    for (qreal x(offset); i < COUNT_WEEK; x += 1.0, ++i) {
+    for (qreal x(offset); i < COUNT_WEEK - 1; x += 1.0, ++i) {
         for (qreal y(COUNT_DAY_ON_WEEK - offset); j < COUNT_DAY_ON_WEEK; y -= 1.0, ++j) {
             *m_scatter << QPointF(x, y);
         }
         j = 0;
     }
-    m_scatter2 = new QScatterSeries();
+    // для последней недели особое добавление
+    j = 0;
+    for (qreal x(COUNT_WEEK - offset), y(COUNT_DAY_ON_WEEK - offset); j < c_current_day; y -= 1.0, ++j) {
+        *m_scatter << QPointF(x, y);
+    }
+    c_countPoints = m_scatter->points().size();
 
-    chart()->addSeries(m_scatter2);
     chart()->addSeries(m_scatter);
+    chart()->addSeries(m_scatter1);
+    chart()->addSeries(m_scatter2);
+    chart()->addSeries(m_scatter3);
+    chart()->addSeries(m_scatter4);
+
     chart()->createDefaultAxes();
     chart()->axes(Qt::Horizontal).first()->setRange(0, COUNT_WEEK);
     chart()->axes(Qt::Vertical).first()->setRange(0, COUNT_DAY_ON_WEEK);
@@ -43,31 +58,56 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     chart()->axisY()->hide();
     chart()->legend()->hide();
 
-    MarkOfDay(1,1);
-
-    MarkOfDay(51,0);
     LoadHistoryDiary();
 }
 
 HistoryCreationDiary::~HistoryCreationDiary()
 {
-    delete m_scatter;
-    delete m_scatter2;
 }
 
 void HistoryCreationDiary::LoadHistoryDiary()
 {
     DBHistoryDiary db(this);
-
-    ////
+    connect(&db, &DBHistoryDiary::ReplyForSelect, this, &HistoryCreationDiary::ReplyForSelectYear);
+    db.SelectYearFromHistoryDiary();
 }
 
-void HistoryCreationDiary::MarkOfDay(int week, int day)
+void HistoryCreationDiary::ReplyForSelectYear(QString date, int value) // [slot]
 {
-    int targetDay = week * COUNT_DAY_ON_WEEK + day;
+    qDebug() << Q_FUNC_INFO << date << " " << value;
+    MarkOfDay(GetTargetDay(date), value);
+}
+
+int HistoryCreationDiary::GetTargetDay(const QString &dateString)
+{
+    QDate date = QDate::fromString(dateString, "yyyy-MM-dd");
+    return (c_countPoints - static_cast<int>(date.daysTo(c_current_date))) - 1;
+}
+
+// правильно работает только если отмечать дни по убыванию даты
+void HistoryCreationDiary::MarkOfDay(int targetDay, int value)
+{
+    if(targetDay < 0) {
+        qDebug() << Q_FUNC_INFO << "Fatal error: target day more count day";
+        return;
+    }
 
     QPointF targetPoint = m_scatter->points().at(targetDay);
 
     m_scatter->remove(targetPoint);
-    m_scatter2->append(targetPoint);
+
+    switch (value) {
+    case 1:
+        m_scatter1->append(targetPoint);
+        break;
+    case 2:
+        m_scatter2->append(targetPoint);
+        break;
+    case 3:
+        m_scatter3->append(targetPoint);
+        break;
+    case 4:
+        m_scatter4->append(targetPoint);
+        break;
+    }
 }
