@@ -40,9 +40,9 @@ void IncomeView::Initialize()
             m_setPassiveIncome << passiveIncome;
             m_setOther << other;
         } else {
-            m_countMount = mount;
             break;
         }
+        m_countMount = mount;
     }
     file.close();
 }
