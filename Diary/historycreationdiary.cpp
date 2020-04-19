@@ -88,7 +88,7 @@ int HistoryCreationDiary::GetTargetDay(const QString &dateString)
 void HistoryCreationDiary::MarkOfDay(int targetDay, int value)
 {
     if(targetDay < 0) {
-        qDebug() << Q_FUNC_INFO << "Fatal error: target day more count day";
+        qDebug() << Q_FUNC_INFO << "Error: target day more count day";
         return;
     }
 
