@@ -4,5 +4,6 @@
     </qresource>
     <qresource prefix="/personalInformation">
         <file>earn.txt</file>
+        <file>goals.png</file>
     </qresource>
 </RCC>

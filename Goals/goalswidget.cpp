@@ -8,7 +8,7 @@
 GoalsWidget::GoalsWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GoalsWidget),
-    m_goalsFileName("goals/goals.png"),
+    m_goalsFileName(":/personalInformation/goals.png"),
     m_subgoalCounter(0)
 {
     ui->setupUi(this);
@@ -23,13 +23,13 @@ GoalsWidget::~GoalsWidget()
 
 void GoalsWidget::ParseGoalFile()
 {
-    QFile goalsFile(FileDirUtils::GetAbsolutePath(m_goalsFileName));
+    QFile goalsFile(m_goalsFileName);
     if(!goalsFile.exists()) {
-        qDebug() << "GoalsWidget::ParseGoalFile: Error, m_goalsFileName not exists";
+        qDebug() << Q_FUNC_INFO << "GoalsWidget::ParseGoalFile: Error, " + m_goalsFileName + " not exists";
         return;
     }
     if (!goalsFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "GoalsWidget::ParseGoalFile: Error, don't open";
+        qDebug() << Q_FUNC_INFO << "Error, " + m_goalsFileName + " don't open";
         return;
     }
 
