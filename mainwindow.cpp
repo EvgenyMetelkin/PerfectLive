@@ -36,7 +36,7 @@ void MainWindow::ShowMainWindow()
 
 void MainWindow::ShowIncome()
 {
-    ui->gridLayout->addWidget(m_incomeView, 2, 3);
+    ui->chartLayout->addWidget(m_incomeView);
 }
 
 void MainWindow::ShowHistoryDiary()
