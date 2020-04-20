@@ -117,3 +117,11 @@ void DiaryWidget::AddHistoryInDB()
     DBHistoryDiary db;
     db.InsertHistoryDiary(coefficientTextSize);
 }
+
+void DiaryWidget::on_Text_textChanged() // ! возможна потеря производительности
+{
+    if(ui->Text->toPlainText().size() > 4)
+        ui->Save->setEnabled(true);
+    else
+        ui->Save->setEnabled(false);
+}

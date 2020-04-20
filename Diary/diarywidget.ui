@@ -90,6 +90,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="Save">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="font">
            <font>
             <pointsize>13</pointsize>

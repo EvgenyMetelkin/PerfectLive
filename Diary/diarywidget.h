@@ -35,6 +35,8 @@ private slots:
     void on_changPath_triggered();
     void on_openOldFile_clicked();
 
+    void on_Text_textChanged();
+
 private:
     void AddHistoryInDB();
 
