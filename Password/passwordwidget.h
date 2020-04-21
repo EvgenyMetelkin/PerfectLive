@@ -18,6 +18,9 @@ public:
 signals:
     void ConfirmedPassword();
 
+private:
+    bool CheckPass(const QString &pass);
+
 private slots:
     void on_Accept_clicked();
 
