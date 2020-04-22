@@ -59,6 +59,7 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     chart()->legend()->hide();
 
     LoadHistoryDiary();
+    connect(m_scatter1, &QScatterSeries::clicked, this, &HistoryCreationDiary::HandleClickedPoint);
 }
 
 HistoryCreationDiary::~HistoryCreationDiary()
@@ -110,4 +111,28 @@ void HistoryCreationDiary::MarkOfDay(int targetDay, int value)
         m_scatter4->append(targetPoint);
         break;
     }
+}
+
+void HistoryCreationDiary::HandleClickedPoint(const QPointF &point)
+{
+    QPointF clickedPoint = point;
+    qDebug() << "point" << point;
+    // Find the closest point from series 1
+//    QPointF closest(INT_MAX, INT_MAX);
+//    qreal distance(INT_MAX);
+//    const auto points = m_scatter->points();
+//    for (const QPointF &currentPoint : points) {
+//        qreal currentDistance = qSqrt((currentPoint.x() - clickedPoint.x())
+//                                      * (currentPoint.x() - clickedPoint.x())
+//                                      + (currentPoint.y() - clickedPoint.y())
+//                                      * (currentPoint.y() - clickedPoint.y()));
+//        if (currentDistance < distance) {
+//            distance = currentDistance;
+//            closest = currentPoint;
+//        }
+//    }
+
+//    // Remove the closes point from series 1 and append it to series 2
+//    m_scatter->remove(closest);
+//    m_scatter2->append(closest);
 }

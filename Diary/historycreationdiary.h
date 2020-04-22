@@ -18,6 +18,7 @@ public:
 
 private slots:
     void ReplyForSelectYear(QString date, int value);
+    void HandleClickedPoint(const QPointF &point);
 
 private:
     void LoadHistoryDiary();
