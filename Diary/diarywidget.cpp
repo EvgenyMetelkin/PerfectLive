@@ -8,8 +8,8 @@
 
 
 #define SIZE_SMALL_TEXT 500
-#define SIZE_MEDIUM_TEXT 750
-#define SIZE_LARGE_TEXT 1000
+#define SIZE_MEDIUM_TEXT 950
+#define SIZE_LARGE_TEXT 1500
 
 DiaryWidget::DiaryWidget(QWidget *parent) :
     QMainWindow(parent),
