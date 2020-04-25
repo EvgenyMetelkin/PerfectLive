@@ -38,7 +38,7 @@ private slots:
     void on_Text_textChanged();
 
 private:
-    void AddHistoryInDB();
+    int AddHistoryInDB();
 
 private:
     Ui::DiaryWidget *ui;

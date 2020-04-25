@@ -29,6 +29,10 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     this->setMinimumSize(900, 170);
 
     m_scatter->setColor(QColor("#e0e0e0"));
+    m_scatter1->setColor(QColor("#a7d984"));
+    m_scatter2->setColor(QColor("#99CA53"));
+    m_scatter3->setColor(QColor("#F6A625"));
+    m_scatter4->setColor(QColor("#BF593E"));
 
     qreal offset = 0.5;
     int i = 0, j = 0;

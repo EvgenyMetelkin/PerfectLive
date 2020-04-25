@@ -63,9 +63,24 @@ void DiaryWidget::SaveFile()
     file.close();
 
     ui->Info->setText("File: " + fileName + " saved.");
-    ui->Info->setStyleSheet("background-color: #75ffb8");
 
-    AddHistoryInDB();
+    switch(AddHistoryInDB()) {
+    case 1:
+        ui->Info->setStyleSheet("background-color: #a7d984");
+        break;
+    case 2:
+        ui->Info->setStyleSheet("background-color: #99CA53");
+        break;
+    case 3:
+        ui->Info->setStyleSheet("background-color: #F6A625");
+        break;
+    case 4:
+        ui->Info->setStyleSheet("background-color: #BF593E");
+        break;
+    case 0:
+    default:
+        ui->Info->setStyleSheet("background-color: #ff7a5c");
+    }
 }
 
 void DiaryWidget::on_Save_clicked()
@@ -103,12 +118,12 @@ void DiaryWidget::on_openOldFile_clicked()
     emit ShowOpenOldFileWidget(m_dir);
 }
 
-void DiaryWidget::AddHistoryInDB()
+int DiaryWidget::AddHistoryInDB()
 {
     int sizeText = ui->Text->toPlainText().size();
     int coefficientTextSize = 0;
     qDebug() << Q_FUNC_INFO << "Size text: " << sizeText;
-    if(sizeText == 0) { return; }
+    if(sizeText == 0) { return 0; }
     else if(sizeText < SIZE_SMALL_TEXT) coefficientTextSize = 1;
     else if(sizeText < SIZE_MEDIUM_TEXT) coefficientTextSize = 2;
     else if(sizeText < SIZE_LARGE_TEXT) coefficientTextSize = 3;
@@ -116,6 +131,8 @@ void DiaryWidget::AddHistoryInDB()
 
     DBHistoryDiary db;
     db.InsertHistoryDiary(coefficientTextSize);
+
+    return coefficientTextSize;
 }
 
 void DiaryWidget::on_Text_textChanged() // ! возможна потеря производительности
