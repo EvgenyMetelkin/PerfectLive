@@ -137,7 +137,7 @@ int DiaryWidget::AddHistoryInDB()
 
 void DiaryWidget::on_Text_textChanged() // ! возможна потеря производительности
 {
-    if(ui->Text->toPlainText().size() > 4)
+    if(!ui->Text->toPlainText().isEmpty())
         ui->Save->setEnabled(true);
     else
         ui->Save->setEnabled(false);
