@@ -9,6 +9,7 @@ public:
     static QString GetWiseLine();
 private:
     static int RandomBetween(int low, int high);
+    static void LineBreak(QString &wiseLine);
 };
 
 #endif // WISELINEPARSER_H

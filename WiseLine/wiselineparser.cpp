@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QTextCodec>
 
+#define MAX_CHAR_IN_LINE 141
+
 QString WiseLineParser::GetWiseLine()
 {
     QFile file(":/wiseline/wiselines.txt");
@@ -25,6 +27,8 @@ QString WiseLineParser::GetWiseLine()
     }
     file.close();
 
+    LineBreak(wiseLine);
+
     return wiseLine;
 }
 
@@ -32,5 +36,18 @@ int WiseLineParser::RandomBetween(int low, int high)
 {
     qsrand((unsigned int)QDateTime::currentMSecsSinceEpoch()); // Установка базового числа для отсчёта рандома в qrand
     return (qrand() % ((high + 1) - low) + low);
+}
+
+void WiseLineParser::LineBreak(QString &wiseLine)
+{
+    if(wiseLine.size() < MAX_CHAR_IN_LINE)
+        return;
+
+    for(int i = MAX_CHAR_IN_LINE; i < wiseLine.size() && i > 0; --i) {
+        if(wiseLine[i] == " ") {
+            wiseLine[i] = '\n';
+            break;
+        }
+    }
 }
 
