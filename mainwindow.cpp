@@ -20,6 +20,28 @@ MainWindow::MainWindow(QWidget *parent) :
     m_timerWiseLine.start(100000);
 
     ShowIncome();
+
+
+    QPalette darkPalette;
+
+    // Настраиваем палитру для цветовых ролей элементов интерфейса
+    darkPalette.setColor(QPalette::NoRole, QColor(53, 53, 53));
+    darkPalette.setColor(QPalette::Window, QColor(53, 53, 53));
+    darkPalette.setColor(QPalette::WindowText, QColor(53, 53, 53));
+    darkPalette.setColor(QPalette::Base, QColor(248, 248, 248));
+    darkPalette.setColor(QPalette::AlternateBase, QColor(53, 53, 53));
+    darkPalette.setColor(QPalette::ToolTipBase, QColor(228, 228, 228));
+    darkPalette.setColor(QPalette::ToolTipText, Qt::white);
+    darkPalette.setColor(QPalette::Text, QColor(53, 53, 53));
+    darkPalette.setColor(QPalette::Button, QColor(53, 53, 53));
+    darkPalette.setColor(QPalette::ButtonText, QColor(53, 53, 53));
+    darkPalette.setColor(QPalette::BrightText, Qt::red);
+    darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
+    darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
+    darkPalette.setColor(QPalette::HighlightedText, Qt::black);
+
+    // Устанавливаем данную палитру
+    qApp->setPalette(darkPalette);
 }
 
 MainWindow::~MainWindow()
