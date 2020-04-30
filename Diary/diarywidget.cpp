@@ -69,7 +69,7 @@ void DiaryWidget::SaveFile()
         ui->Info->setStyleSheet("background-color: #a7d984");
         break;
     case 2:
-        ui->Info->setStyleSheet("background-color: #99CA53");
+        ui->Info->setStyleSheet("background-color: #5da130");
         break;
     case 3:
         ui->Info->setStyleSheet("background-color: #F6A625");
