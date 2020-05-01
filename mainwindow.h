@@ -9,6 +9,7 @@
 #include "Diary/historycreationdiary.h"
 #include "Goals/goalswidget.h"
 #include "Income/incomeview.h"
+#include "Census/censuswidget.h"
 
 #define ORGANIZATION_NAME "OOO EvgMet"
 #define ORGANIZATION_DOMAIN "www.evg_met.ru"
@@ -36,6 +37,8 @@ private slots:
 
     void NextWiseLine();
 
+    void on_pushButton_clicked();
+
 private:
     void ShowMainWindow();
     void ShowIncome();
@@ -49,5 +52,6 @@ private:
     QTimer m_timerWiseLine;
     IncomeView *m_incomeView;
     HistoryCreationDiary *m_historyDiary;
+    CensusWidget m_censusWidget;
 };
 #endif // MAINWINDOW_H

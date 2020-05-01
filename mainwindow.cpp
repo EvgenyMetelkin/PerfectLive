@@ -74,7 +74,7 @@ void MainWindow::ConfirmedPassword()
 void MainWindow::on_bDiary_clicked()
 {
     this->hide();
-    m_diaryWidget.show(); // ! не скрываю окно и нет кнопки выхода
+    m_diaryWidget.show(); // ! нет кнопки выхода
 }
 
 void MainWindow::on_bGoals_clicked()
@@ -91,4 +91,10 @@ void MainWindow::on_bChangeWiseLine_clicked()
 void MainWindow::NextWiseLine()
 {
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    this->hide();
+    m_censusWidget.show(); // ! нет кнопки выхода
 }
