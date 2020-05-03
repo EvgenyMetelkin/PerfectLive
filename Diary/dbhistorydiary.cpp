@@ -10,9 +10,6 @@
 
 #include "../Global/filedirutils.h"
 
-#define DATABASE_HOSTNAME   "PerfectLive"
-#define DATABASE_NAME       "PerfectLive.db"
-
 #define TABLE               "historyDiary"
 #define TABLE_DATE          "date"
 #define TABLE_VALUE         "value"

@@ -3,6 +3,9 @@
 
 #include <QString>
 
+#define DATABASE_HOSTNAME   "PerfectLive"
+#define DATABASE_NAME       "PerfectLive.db"
+
 class FileDirUtils
 {
 public:
