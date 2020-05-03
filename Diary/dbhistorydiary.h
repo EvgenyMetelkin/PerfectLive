@@ -10,7 +10,6 @@ class DBHistoryDiary : public QObject
 public:
     explicit DBHistoryDiary(QObject *parent = nullptr);
 
-    void ConnectToDataBase();
     bool InsertHistoryDiary(const int value);
     void SelectAllHistoryDiary();
     void SelectYearFromHistoryDiary();
