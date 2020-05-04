@@ -2,32 +2,24 @@
 #define DBCENSUS_H
 
 #include <QObject>
-#include <QSql>
-#include <QSqlQuery>
-#include <QSqlError>
 #include <QSqlDatabase>
-#include <QFile>
-#include <QDate>
-#include <QDebug>
-
 
 class DBCensus : public QObject
 {
     Q_OBJECT
 public:
-    explicit DBCensus(QObject *parent = 0);
+    explicit DBCensus(QObject *parent = nullptr);
     ~DBCensus();
 
-    bool InserIntoTable(const QVariantList &data);
+    bool InserIntoCensus(const QVariantList &data);
 
 private:
-    // Сам объект базы данных, с которым будет производиться работа
-    QSqlDatabase    db;
-
-private:
-    bool CreateTableIfNotExists();
-    bool RestoreDBCensus();
+    bool OpenDBCensus();
     void CloseDBCensus();
+    bool CreateTableIfNotExists();
+
+private:
+    QSqlDatabase    db;
 };
 
 #endif // DBCENSUS_H
