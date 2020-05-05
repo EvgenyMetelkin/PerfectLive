@@ -17,6 +17,20 @@ CensusWidget::~CensusWidget()
     delete ui;
 }
 
+void CensusWidget::SetModel()
+{
+    ui->tableView->setModel(tableModel.GetTableModel());
+    //ui->tableView->setColumnHidden(0, true);    // Скрываем колонку с id записей
+    // Разрешаем выделение строк
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    // Устанавливаем режим выделения лишь одно строки в таблице
+    //ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    // Устанавливаем размер колонок по содержимому
+    ui->tableView->resizeColumnsToContents();
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
+}
+
 void CensusWidget::LoadFromDB()
 {
     qDebug() << Q_FUNC_INFO;

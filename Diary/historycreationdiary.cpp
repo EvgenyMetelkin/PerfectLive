@@ -119,7 +119,7 @@ void HistoryCreationDiary::MarkOfDay(int targetDay, int value)
 
 void HistoryCreationDiary::HandleClickedPoint(const QPointF &point)
 {
-    QPointF clickedPoint = point;
+    //QPointF clickedPoint = point;
     qDebug() << "point" << point;
     // Find the closest point from series 1
 //    QPointF closest(INT_MAX, INT_MAX);

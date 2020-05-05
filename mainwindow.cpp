@@ -93,7 +93,7 @@ void MainWindow::NextWiseLine()
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_bCensus_clicked()
 {
     this->hide();
     m_censusWidget.show(); // ! нет кнопки выхода

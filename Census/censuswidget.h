@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "censustablemodel.h"
+
 namespace Ui {
 class CensusWidget;
 }
@@ -24,10 +26,12 @@ private slots:
     void on_rate_editingFinished();
 
 private:
+    void SetModel();
     void CalculateValues();
 
 private:
     Ui::CensusWidget *ui;
+    CensusTableModel tableModel;
 };
 
 #endif // CENSUSWIDGET_H

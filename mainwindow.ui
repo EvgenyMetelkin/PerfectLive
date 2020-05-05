@@ -83,7 +83,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="bCensus">
           <property name="font">
            <font>
             <pointsize>10</pointsize>

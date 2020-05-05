@@ -34,10 +34,9 @@ private slots:
     void on_bDiary_clicked();
     void on_bGoals_clicked();
     void on_bChangeWiseLine_clicked();
+    void on_bCensus_clicked();
 
     void NextWiseLine();
-
-    void on_pushButton_clicked();
 
 private:
     void ShowMainWindow();

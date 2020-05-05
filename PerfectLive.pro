@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Census/censustablemodel.cpp \
     Census/censuswidget.cpp \
     Census/dbcensus.cpp \
     Diary/dbhistorydiary.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
     WiseLine/wiselineparser.cpp
 
 HEADERS += \
+    Census/censustablemodel.h \
     Census/censuswidget.h \
     Census/dbcensus.h \
     Diary/dbhistorydiary.h \
