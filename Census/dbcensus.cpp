@@ -34,14 +34,14 @@ DBCensus::~DBCensus()
 
 bool DBCensus::OpenDBCensus()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE"); // ! перекомпилить sqlite для 64-бит
+    //db = QSqlDatabase::addDatabase("QSQLITE"); // ! перекомпилить sqlite для 64-бит
     db.setHostName(DATABASE_d);
     db.setDatabaseName(DATABASE_c);
+    CreateTableIfNotExists();
     if(!db.open()){
         qDebug() << Q_FUNC_INFO << "Don't open db " DATABASE_c;
         return false;
     }
-    CreateTableIfNotExists();
     return true;
 }
 
