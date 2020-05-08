@@ -1,5 +1,6 @@
 #include "dbhistorydiary.h"
 
+#include <QSqlDatabase>
 #include <QSql>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -23,7 +24,7 @@ DBHistoryDiary::DBHistoryDiary(QObject *parent) :
 
 bool DBHistoryDiary::OpenDataBase()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE"); // ! перекомпилить sqlite для 64-бит
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE"); // ! перекомпилить sqlite для 64-бит
     db.setHostName(DATABASE_HOSTNAME);
     db.setDatabaseName(DATABASE_NAME);
     if(!db.open()){
@@ -36,7 +37,6 @@ bool DBHistoryDiary::OpenDataBase()
 
 void DBHistoryDiary::CloseDataBase()
 {
-    db.close();
 }
 
 bool DBHistoryDiary::CreateTableIfNotExists()

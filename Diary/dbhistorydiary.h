@@ -2,7 +2,6 @@
 #define DBHISTORYDIARY_H
 
 #include <QObject>
-#include <QSqlDatabase>
 
 class DBHistoryDiary : public QObject
 {
@@ -20,10 +19,7 @@ signals:
 private:
     bool OpenDataBase();
     void CloseDataBase();
-    bool CreateTableIfNotExists();
-
-private:
-    QSqlDatabase db;
+    bool CreateTableIfNotExists(); 
 };
 
 #endif // DBHISTORYDIARY_H

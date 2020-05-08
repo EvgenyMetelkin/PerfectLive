@@ -24,7 +24,7 @@ private:
     bool CreateTableIfNotExists();
 
 private:
-    QSqlDatabase    db;
+    //QSqlDatabase    db;
 };
 
 #endif // DBCENSUS_H

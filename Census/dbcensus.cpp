@@ -18,7 +18,7 @@
 #define TABLE_ARTIST            "Artist"
 #define TABLE_FOR_WHAT          "ForWhat"
 
-#define DATABASE_d   "PerfectLive"
+#define DATABASE_d   "PerfectLivev"
 #define DATABASE_c      "Census.db"
 
 
@@ -35,6 +35,7 @@ DBCensus::~DBCensus()
 bool DBCensus::OpenDBCensus()
 {
     //db = QSqlDatabase::addDatabase("QSQLITE"); // ! перекомпилить sqlite для 64-бит
+    QSqlDatabase db = QSqlDatabase::database();
     db.setHostName(DATABASE_d);
     db.setDatabaseName(DATABASE_c);
     CreateTableIfNotExists();
@@ -47,7 +48,7 @@ bool DBCensus::OpenDBCensus()
 
 void DBCensus::CloseDBCensus()
 {
-    db.close();
+    //db.close();
 }
 
 bool DBCensus::CreateTableIfNotExists()
