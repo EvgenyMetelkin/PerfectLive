@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Настраиваем палитру для цветовых ролей элементов интерфейса
     darkPalette.setColor(QPalette::NoRole, QColor(53, 53, 53));
     darkPalette.setColor(QPalette::Window, QColor(53, 53, 53));
-    darkPalette.setColor(QPalette::WindowText, QColor(53, 53, 53));
+    darkPalette.setColor(QPalette::WindowText, Qt::white);
     darkPalette.setColor(QPalette::Base, QColor(248, 248, 248));
     darkPalette.setColor(QPalette::AlternateBase, QColor(53, 53, 53));
     darkPalette.setColor(QPalette::ToolTipBase, QColor(228, 228, 228));
@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     darkPalette.setColor(QPalette::BrightText, Qt::red);
     darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
     darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-    darkPalette.setColor(QPalette::HighlightedText, Qt::black);
+    darkPalette.setColor(QPalette::HighlightedText, Qt::white);
 
     // Устанавливаем данную палитру
     qApp->setPalette(darkPalette);
