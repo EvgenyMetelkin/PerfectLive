@@ -1,11 +1,11 @@
+#include <QDebug>
+#include <QFileDialog>
+
 #include "diarywidget.h"
 #include "ui_diarywidget.h"
 #include "Global/settings.h"
 #include "dbhistorydiary.h"
-
-#include <QDebug>
-#include <QFileDialog>
-
+#include "WiseLine/wiselineparser.h"
 
 #define SIZE_SMALL_TEXT 500
 #define SIZE_MEDIUM_TEXT 950
@@ -30,6 +30,10 @@ DiaryWidget::DiaryWidget(QWidget *parent) :
     }
 
     ui->Date->setDate(QDate::currentDate());
+
+    ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
+    connect(&m_timerWiseLine, &QTimer::timeout, this, &DiaryWidget::NextWiseLine);
+    m_timerWiseLine.start(100000);
 }
 
 DiaryWidget::~DiaryWidget()
@@ -141,4 +145,9 @@ void DiaryWidget::on_Text_textChanged() // ! возможна потеря пр�
         ui->Save->setEnabled(true);
     else
         ui->Save->setEnabled(false);
+}
+
+void DiaryWidget::NextWiseLine()
+{
+    ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }

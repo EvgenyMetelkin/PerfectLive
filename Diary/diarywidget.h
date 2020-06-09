@@ -2,12 +2,12 @@
 #define DIARYWIDGET_H
 
 #include <QMainWindow>
+#include <QDir>
+#include <QTimer>
 
 #include "openoldfilewidget.h"
 #include "modifyfile.h"
 #include "rewritedialog.h"
-
-#include <QDir>
 
 namespace Ui {
 class DiaryWidget;
@@ -29,6 +29,7 @@ public slots:
 
 private slots:
     void SaveFile();
+    void NextWiseLine();
 
     void on_Save_clicked();
     void on_setBasePath_triggered();
@@ -46,6 +47,7 @@ private:
     RewriteDialog m_rewriteDialog;
     QList<ModifyFile *> m_listModifyFiles;
     QDir m_dir;
+    QTimer m_timerWiseLine;
 
 };
 
