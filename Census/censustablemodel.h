@@ -18,8 +18,8 @@ private:
     void SetupModel();
 
 private:
-    QSqlTableModel model;
-    DBCensus dbCensus;
+    QSqlTableModel m_model;
+    DBCensus m_dbCensus;
 };
 
 #endif // CENSUSTABLEMODEL_H

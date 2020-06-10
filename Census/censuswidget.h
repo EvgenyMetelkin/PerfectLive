@@ -31,7 +31,7 @@ private:
 
 private:
     Ui::CensusWidget *ui;
-    CensusTableModel tableModel;
+    CensusTableModel m_tableModel;
 };
 
 #endif // CENSUSWIDGET_H

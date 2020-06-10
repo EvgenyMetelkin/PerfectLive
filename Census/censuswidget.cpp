@@ -19,7 +19,7 @@ CensusWidget::~CensusWidget()
 
 void CensusWidget::SetModel()
 {
-    ui->tableView->setModel(tableModel.GetTableModel());
+    ui->tableView->setModel(m_tableModel.GetTableModel());
     //ui->tableView->setColumnHidden(0, true);    // Скрываем колонку с id записей
     // Разрешаем выделение строк
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);

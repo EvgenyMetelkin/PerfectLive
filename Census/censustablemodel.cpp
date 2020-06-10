@@ -7,23 +7,23 @@ CensusTableModel::CensusTableModel()
 
 void CensusTableModel::SetupModel()
 {
-    model.setTable(TABLE_CENSUS);
+    m_model.setTable(TABLE_CENSUS);
 
     int i = 0;
-    for(QString nameColumn : dbCensus.GetNameColumn()){
-        model.setHeaderData(i++, Qt::Horizontal, nameColumn);
+    for(QString nameColumn : m_dbCensus.GetNameColumn()){
+        m_model.setHeaderData(i++, Qt::Horizontal, nameColumn);
     }
     // Устанавливаем сортировку по возрастанию даты
-    model.setSort(1,Qt::AscendingOrder);
+    m_model.setSort(1,Qt::AscendingOrder);
 }
 
 void CensusTableModel::InserIntoCensus(const QVariantList &data)
 {
-    dbCensus.InserIntoCensus(data);
+    m_dbCensus.InserIntoCensus(data);
 }
 
 QSqlTableModel* CensusTableModel::GetTableModel()
 {
-    model.select(); // Делаем выборку данных из таблицы
-    return &model;
+    m_model.select(); // Делаем выборку данных из таблицы
+    return &m_model;
 }
