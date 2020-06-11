@@ -15,13 +15,13 @@ public:
     explicit DBCensus(QObject *parent = 0);
     ~DBCensus();
 
-    bool InserIntoCensus(const QVariantList &data);
-    QStringList GetNameColumn();
+    bool inserIntoCensus(const QVariantList &data);
+    QStringList getNameColumn();
 
 private:
-    bool OpenDBCensus();
-    void CloseDBCensus();
-    bool CreateTableIfNotExists();
+    bool openDBCensus();
+    void closeDBCensus();
+    bool createTableIfNotExists();
 
 private:
 };

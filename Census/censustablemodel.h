@@ -11,11 +11,11 @@ class CensusTableModel
 public:
     CensusTableModel();
 
-    void InserIntoCensus(const QVariantList &data);
-    QSqlTableModel* GetTableModel();
+    void inserIntoCensus(const QVariantList &data);
+    QSqlTableModel* getTableModel();
 
 private:
-    void SetupModel();
+    void setupModel();
 
 private:
     QSqlTableModel m_model;

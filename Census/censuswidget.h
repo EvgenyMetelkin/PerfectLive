@@ -18,7 +18,7 @@ public:
     ~CensusWidget();
 
 private slots:
-    void LoadFromDB();
+    void loadFromDB();
 
     void on_cofMe_valueChanged(double arg1);
     void on_cofArtist_valueChanged(double arg1);
@@ -26,8 +26,8 @@ private slots:
     void on_rate_editingFinished();
 
 private:
-    void SetModel();
-    void CalculateValues();
+    void setModel();
+    void calculateValues();
 
 private:
     Ui::CensusWidget *ui;

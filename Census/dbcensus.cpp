@@ -24,21 +24,21 @@
 
 DBCensus::DBCensus(QObject *parent) : QObject(parent)
 {
-    OpenDBCensus();
+    openDBCensus();
 }
 
 DBCensus::~DBCensus()
 {
-    CloseDBCensus();
+    closeDBCensus();
 }
 
-bool DBCensus::OpenDBCensus()
+bool DBCensus::openDBCensus()
 {
     //db = QSqlDatabase::addDatabase("QSQLITE"); // ! перекомпилить sqlite для 64-бит
     QSqlDatabase db = QSqlDatabase::database();
     db.setHostName(DATABASE_HOST_NAME);
     db.setDatabaseName(DATABASE_NAME);
-    CreateTableIfNotExists();
+    createTableIfNotExists();
     if(!db.open()){
         qDebug() << Q_FUNC_INFO << "Don't open db " DATABASE_NAME;
         return false;
@@ -46,12 +46,12 @@ bool DBCensus::OpenDBCensus()
     return true;
 }
 
-void DBCensus::CloseDBCensus()
+void DBCensus::closeDBCensus()
 {
     //db.close();
 }
 
-bool DBCensus::CreateTableIfNotExists()
+bool DBCensus::createTableIfNotExists()
 {
     QSqlQuery query;
     if(!query.exec( "CREATE TABLE IF NOT EXISTS " TABLE_CENSUS " ("
@@ -76,7 +76,7 @@ bool DBCensus::CreateTableIfNotExists()
     }
 }
 
-bool DBCensus::InserIntoCensus(const QVariantList &data)
+bool DBCensus::inserIntoCensus(const QVariantList &data)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO " TABLE_CENSUS " ( " TABLE_DATE ", "
@@ -104,7 +104,7 @@ bool DBCensus::InserIntoCensus(const QVariantList &data)
     }
 }
 
-QStringList DBCensus::GetNameColumn()
+QStringList DBCensus::getNameColumn()
 {
     QStringList res;
     res << "id" << TABLE_DATE << TABLE_MAST_BE << TABLE_FACT << TABLE_ME_USD;

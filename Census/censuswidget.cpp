@@ -9,7 +9,7 @@ CensusWidget::CensusWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(this, &QWidget::show, this, &CensusWidget::LoadFromDB);
+    connect(this, &QWidget::show, this, &CensusWidget::loadFromDB);
 }
 
 CensusWidget::~CensusWidget()
@@ -17,9 +17,9 @@ CensusWidget::~CensusWidget()
     delete ui;
 }
 
-void CensusWidget::SetModel()
+void CensusWidget::setModel()
 {
-    ui->tableView->setModel(m_tableModel.GetTableModel());
+    ui->tableView->setModel(m_tableModel.getTableModel());
     //ui->tableView->setColumnHidden(0, true);    // Скрываем колонку с id записей
     // Разрешаем выделение строк
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -31,12 +31,12 @@ void CensusWidget::SetModel()
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
 }
 
-void CensusWidget::LoadFromDB()
+void CensusWidget::loadFromDB()
 {
     qDebug() << Q_FUNC_INFO;
 }
 
-void CensusWidget::CalculateValues()
+void CensusWidget::calculateValues()
 {
     double countUSD = ui->fact->value();
 
@@ -55,22 +55,22 @@ void CensusWidget::CalculateValues()
 void CensusWidget::on_cofMe_valueChanged(double value)
 {
     ui->cofArtist->setValue(1 - value);
-    CalculateValues();
+    calculateValues();
 }
 
 void CensusWidget::on_cofArtist_valueChanged(double value)
 {
     ui->cofMe->setValue(1 - value);
-    CalculateValues();
+    calculateValues();
 }
 
 void CensusWidget::on_fact_editingFinished()
 {
-    CalculateValues();
+    calculateValues();
 }
 
 
 void CensusWidget::on_rate_editingFinished()
 {
-    CalculateValues();
+    calculateValues();
 }
