@@ -17,7 +17,7 @@ PasswordWidget::~PasswordWidget()
     delete ui;
 }
 
-bool PasswordWidget::CheckPass(const QString &pass)
+bool PasswordWidget::checkPass(const QString &pass)
 {
     QString hash = FileDirUtils::GetMD5(pass);
 
@@ -35,8 +35,8 @@ void PasswordWidget::on_Accept_clicked()
 {
     qDebug() << Settings::get(Settings::Mode, Settings::General).toString();
 
-    if(CheckPass(ui->Password->text())) {
-        emit ConfirmedPassword();
+    if(checkPass(ui->Password->text())) {
+        emit confirmedPassword();
     } else {
         ui->Error->setText("Failed password");
     }

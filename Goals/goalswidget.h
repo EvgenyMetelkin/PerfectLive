@@ -16,8 +16,8 @@ public:
     ~GoalsWidget();
 
 private:
-    void ParseGoalFile();
-    void ParseGoalsLine(const QString &goalsLine);
+    void parseGoalFile();
+    void parseGoalsLine(const QString &goalsLine);
 
 private:
     Ui::GoalsWidget *ui;

@@ -17,8 +17,8 @@ public:
     ~IncomeView();
 
 private:
-    void Initialize();
-    void CreateChart();
+    void initialize();
+    void createChart();
 
 private:
     QChartView *m_incomeView;

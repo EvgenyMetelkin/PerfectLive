@@ -13,13 +13,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_passwordWidget.show();
 
-    connect(&m_passwordWidget, &PasswordWidget::ConfirmedPassword, this, &MainWindow::ConfirmedPassword);
+    connect(&m_passwordWidget, &PasswordWidget::confirmedPassword, this, &MainWindow::confirmedPassword);
 
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
-    connect(&m_timerWiseLine, &QTimer::timeout, this, &MainWindow::NextWiseLine);
+    connect(&m_timerWiseLine, &QTimer::timeout, this, &MainWindow::nextWiseLine);
     m_timerWiseLine.start(100000);
 
-    ShowIncome();
+    showIncome();
 
 
     QPalette darkPalette;
@@ -50,25 +50,25 @@ MainWindow::~MainWindow()
     delete m_incomeView;
 }
 
-void MainWindow::ShowMainWindow()
+void MainWindow::showMainWindow()
 {
     m_passwordWidget.hide();
     this->show();
 }
 
-void MainWindow::ShowIncome()
+void MainWindow::showIncome()
 {
     ui->chartLayout->addWidget(m_incomeView);
 }
 
-void MainWindow::ShowHistoryDiary()
+void MainWindow::showHistoryDiary()
 {
     ui->layoutHistoryDiary->addWidget(m_historyDiary);
 }
 
-void MainWindow::ConfirmedPassword()
+void MainWindow::confirmedPassword()
 {
-    ShowMainWindow();
+    showMainWindow();
 }
 
 void MainWindow::on_bDiary_clicked()
@@ -88,7 +88,7 @@ void MainWindow::on_bChangeWiseLine_clicked()
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }
 
-void MainWindow::NextWiseLine()
+void MainWindow::nextWiseLine()
 {
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }

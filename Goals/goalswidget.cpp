@@ -13,7 +13,7 @@ GoalsWidget::GoalsWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ParseGoalFile();
+    parseGoalFile();
 }
 
 GoalsWidget::~GoalsWidget()
@@ -21,7 +21,7 @@ GoalsWidget::~GoalsWidget()
     delete ui;
 }
 
-void GoalsWidget::ParseGoalFile()
+void GoalsWidget::parseGoalFile()
 {
     QFile goalsFile(m_goalsFileName);
     if(!goalsFile.exists()) {
@@ -36,11 +36,11 @@ void GoalsWidget::ParseGoalFile()
     QTextStream in(&goalsFile);
     while (!in.atEnd()) {
         QString line = in.readLine();
-        ParseGoalsLine(line);
+        parseGoalsLine(line);
     }
 }
 
-void GoalsWidget::ParseGoalsLine(const QString &goalsLine)
+void GoalsWidget::parseGoalsLine(const QString &goalsLine)
 {
     if(goalsLine.startsWith("*")) {
         ui->pteGoals->appendPlainText(QString("    %1").arg(++m_subgoalCounter) + ") " + goalsLine);

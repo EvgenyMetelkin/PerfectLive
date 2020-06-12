@@ -16,10 +16,10 @@ public:
     ~PasswordWidget();
 
 signals:
-    void ConfirmedPassword();
+    void confirmedPassword();
 
 private:
-    bool CheckPass(const QString &pass);
+    bool checkPass(const QString &pass);
 
 private slots:
     void on_Accept_clicked();

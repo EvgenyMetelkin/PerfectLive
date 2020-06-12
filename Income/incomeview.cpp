@@ -13,7 +13,7 @@ IncomeView::IncomeView(QWidget *parent) :
     m_setOther("Другое"),
     m_countMount(0)
 {
-    CreateChart();
+    createChart();
 }
 
 IncomeView::~IncomeView()
@@ -22,7 +22,7 @@ IncomeView::~IncomeView()
         delete m_incomeView;
 }
 
-void IncomeView::Initialize()
+void IncomeView::initialize()
 {
     QFile file(":/personalInformation/earn.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -47,9 +47,9 @@ void IncomeView::Initialize()
     file.close();
 }
 
-void IncomeView::CreateChart()
+void IncomeView::createChart()
 {
-    Initialize();
+    initialize();
 
     m_series.append(&m_setSalary);
     m_series.append(&m_setFA);

@@ -18,7 +18,7 @@ QString WiseLineParser::GetWiseLine()
     in.setCodec(QTextCodec::codecForName("UTF-8"));
 
     int countLine = in.readLine().toInt();
-    int randomLine = RandomBetween(1, countLine);
+    int randomLine = randomBetween(1, countLine);
 
     QString wiseLine = "";
 
@@ -27,18 +27,18 @@ QString WiseLineParser::GetWiseLine()
     }
     file.close();
 
-    LineBreak(wiseLine);
+    lineBreak(wiseLine);
 
     return wiseLine;
 }
 
-int WiseLineParser::RandomBetween(int low, int high)
+int WiseLineParser::randomBetween(int low, int high)
 {
     qsrand((unsigned int)QDateTime::currentMSecsSinceEpoch()); // Установка базового числа для отсчёта рандома в qrand
     return (qrand() % ((high + 1) - low) + low);
 }
 
-void WiseLineParser::LineBreak(QString &wiseLine)
+void WiseLineParser::lineBreak(QString &wiseLine)
 {
     if(wiseLine.size() < MAX_CHAR_IN_LINE)
         return;

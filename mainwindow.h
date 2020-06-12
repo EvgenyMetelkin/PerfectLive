@@ -28,7 +28,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void ConfirmedPassword();
+    void confirmedPassword();
 
 private slots:
     void on_bDiary_clicked();
@@ -36,12 +36,12 @@ private slots:
     void on_bChangeWiseLine_clicked();
     void on_bCensus_clicked();
 
-    void NextWiseLine();
+    void nextWiseLine();
 
 private:
-    void ShowMainWindow();
-    void ShowIncome();
-    void ShowHistoryDiary();
+    void showMainWindow();
+    void showIncome();
+    void showHistoryDiary();
 
 private:
     Ui::MainWindow *ui;
