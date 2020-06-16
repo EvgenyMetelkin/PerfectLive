@@ -15,7 +15,7 @@ ModifyFile::ModifyFile(QString &_dir, QWidget *parent) :
     this->show();
 }
 
-ModifyFile::~ModifyFile() // !? не вызывается диструктор если нажать на крест
+ModifyFile::~ModifyFile() // !! не вызывается диструктор если нажать на крест
 {
     m_file.close();
     qDebug() << "Close " << m_dir;

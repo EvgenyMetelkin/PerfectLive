@@ -19,5 +19,5 @@ QString FileDirUtils::GetMD5(const QString &str)
 {
     QCryptographicHash md5(QCryptographicHash::Md5);
     md5.addData(str.toUtf8());
-    return md5.result().toHex().constData(); //В переменной cod полученный md5-хэш
+    return md5.result().toHex().constData();
 }
