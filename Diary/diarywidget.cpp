@@ -7,9 +7,9 @@
 #include "dbhistorydiary.h"
 #include "WiseLine/wiselineparser.h"
 
-#define SIZE_SMALL 1000
-#define SIZE_MEDIUM 1550
-#define SIZE_LARGE 2100
+#define SIZE_SMALL 700
+#define SIZE_MEDIUM 1250
+#define SIZE_LARGE 1800
 
 DiaryWidget::DiaryWidget(QWidget *parent) :
     QMainWindow(parent),
@@ -130,40 +130,40 @@ int DiaryWidget::GetBonus()
         sumBonus += 1000;
     }
     if(ui->chbImportantDay->isChecked()) {
-        qDebug() << "Add bonus ImportantDay +700";
-        sumBonus += 700;
+        qDebug() << "Add bonus ImportantDay +200";
+        sumBonus += 200;
     }
     if(ui->chbIncreaseKarma->isChecked()) {
-        qDebug() << "Add bonus IncreaseKarma +400";
-        sumBonus += 400;
+        qDebug() << "Add bonus IncreaseKarma +100";
+        sumBonus += 100;
     }
     if(ui->chbDoneGoal->isChecked()) {
         qDebug() << "Add bonus DoneGoal +1000";
         sumBonus += 1000;
     }
     if(ui->chbReadBook->isChecked()) {
-        qDebug() << "Add bonus ReadBook +400";
-        sumBonus += 400;
+        qDebug() << "Add bonus ReadBook +200";
+        sumBonus += 200;
     }
     if(ui->chbLearnInglish->isChecked()) {
-        qDebug() << "Add bonus LearnInglish +400";
-        sumBonus += 400;
+        qDebug() << "Add bonus LearnInglish +200";
+        sumBonus += 200;
     }
     if(ui->chbTriedSomethingNew->isChecked()) {
-        qDebug() << "Add bonus TriedSomethingNew +400";
-        sumBonus += 400;
+        qDebug() << "Add bonus TriedSomethingNew +200";
+        sumBonus += 200;
     }
     if(ui->chbVisiteCoolPlace->isChecked()) {
-        qDebug() << "Add bonus VisiteCoolPlace +400";
-        sumBonus += 400;
+        qDebug() << "Add bonus VisiteCoolPlace +100";
+        sumBonus += 100;
     }
     if(ui->chbCallMomAndDad->isChecked()) {
-        qDebug() << "Add bonus CallMomAndDad +400";
-        sumBonus += 400;
+        qDebug() << "Add bonus CallMomAndDad +200";
+        sumBonus += 200;
     }
     if(ui->chbDoNotAfraidTry->isChecked()) {
-        qDebug() << "Add bonus DoNotAfraidTry +500";
-        sumBonus += 500;
+        qDebug() << "Add bonus DoNotAfraidTry +400";
+        sumBonus += 400;
     }
 
     return  sumBonus;
