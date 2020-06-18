@@ -7,9 +7,9 @@
 #include "dbhistorydiary.h"
 #include "WiseLine/wiselineparser.h"
 
-#define SIZE_SMALL_TEXT 500
-#define SIZE_MEDIUM_TEXT 950
-#define SIZE_LARGE_TEXT 1500
+#define SIZE_SMALL 500
+#define SIZE_MEDIUM 950
+#define SIZE_LARGE 1500
 
 DiaryWidget::DiaryWidget(QWidget *parent) :
     QMainWindow(parent),
@@ -122,21 +122,69 @@ void DiaryWidget::on_openOldFile_clicked()
     emit ShowOpenOldFileWidget(m_dir);
 }
 
+int DiaryWidget::GetBonus()
+{
+    int sumBonus = 0;
+    if(ui->chbImportantChoice->isChecked()) {
+        qDebug() << "Add bonus ImportantChoice +1000";
+        sumBonus += 1000;
+    }
+    if(ui->chbImportantDay->isChecked()) {
+        qDebug() << "Add bonus ImportantDay +700";
+        sumBonus += 700;
+    }
+    if(ui->chbIncreaseKarma->isChecked()) {
+        qDebug() << "Add bonus IncreaseKarma +400";
+        sumBonus += 400;
+    }
+    if(ui->chbDoneGoal->isChecked()) {
+        qDebug() << "Add bonus DoneGoal +1000";
+        sumBonus += 1000;
+    }
+    if(ui->chbReadBook->isChecked()) {
+        qDebug() << "Add bonus ReadBook +400";
+        sumBonus += 400;
+    }
+    if(ui->chbLearnInglish->isChecked()) {
+        qDebug() << "Add bonus LearnInglish +400";
+        sumBonus += 400;
+    }
+    if(ui->chbTriedSomethingNew->isChecked()) {
+        qDebug() << "Add bonus TriedSomethingNew +400";
+        sumBonus += 400;
+    }
+    if(ui->chbVisiteCoolPlace->isChecked()) {
+        qDebug() << "Add bonus VisiteCoolPlace +400";
+        sumBonus += 400;
+    }
+    if(ui->chbCallMomAndDad->isChecked()) {
+        qDebug() << "Add bonus CallMomAndDad +400";
+        sumBonus += 400;
+    }
+    if(ui->chbDoNotAfraidTry->isChecked()) {
+        qDebug() << "Add bonus DoNotAfraidTry +500";
+        sumBonus += 500;
+    }
+
+    return  sumBonus;
+}
+
 int DiaryWidget::AddHistoryInDB()
 {
     int sizeText = ui->Text->toPlainText().size();
-    int coefficientTextSize = 0;
-    qDebug() << Q_FUNC_INFO << "Size text: " << sizeText;
-    if(sizeText == 0) { return 0; }
-    else if(sizeText < SIZE_SMALL_TEXT) coefficientTextSize = 1;
-    else if(sizeText < SIZE_MEDIUM_TEXT) coefficientTextSize = 2;
-    else if(sizeText < SIZE_LARGE_TEXT) coefficientTextSize = 3;
-    else if(sizeText > SIZE_LARGE_TEXT) coefficientTextSize = 4;
+    qDebug() << Q_FUNC_INFO << "Size text: " << sizeText << "";
+    int sizeTextAndBonus = sizeText + GetBonus();
+    int coefficientTextSizeAndBonus = 0;
+    if(sizeTextAndBonus == 0) { return 0; }
+    else if(sizeTextAndBonus < SIZE_SMALL) coefficientTextSizeAndBonus = 1;
+    else if(sizeTextAndBonus < SIZE_MEDIUM) coefficientTextSizeAndBonus = 2;
+    else if(sizeTextAndBonus < SIZE_LARGE) coefficientTextSizeAndBonus = 3;
+    else if(sizeTextAndBonus > SIZE_LARGE) coefficientTextSizeAndBonus = 4;
 
     DBHistoryDiary db;
-    db.InsertHistoryDiary(coefficientTextSize);
+    db.InsertHistoryDiary(coefficientTextSizeAndBonus);
 
-    return coefficientTextSize;
+    return coefficientTextSizeAndBonus;
 }
 
 void DiaryWidget::on_Text_textChanged() // ! возможна потеря производительности

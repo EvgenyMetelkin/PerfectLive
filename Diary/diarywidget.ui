@@ -65,24 +65,88 @@
          </widget>
         </item>
         <item>
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
          <widget class="QDateEdit" name="Date">
           <property name="font">
            <font>
             <pointsize>13</pointsize>
            </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbImportantChoice">
+          <property name="text">
+           <string>Принял очень значимое 
+ в жизни решение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbImportantDay">
+          <property name="text">
+           <string>Незабываемый день</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbIncreaseKarma">
+          <property name="text">
+           <string>Повысил карму </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbDoneGoal">
+          <property name="text">
+           <string>Исполнил мечту</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbReadBook">
+          <property name="text">
+           <string>Прочитано 20+ страниц</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbLearnInglish">
+          <property name="text">
+           <string>Выучил 10 англ. слов
+или прокачал английский</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbTriedSomethingNew">
+          <property name="text">
+           <string>Попробовал что-то новое</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbVisiteCoolPlace">
+          <property name="text">
+           <string>Побывал в крутом месте</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbCallMomAndDad">
+          <property name="text">
+           <string>Позвонил родителям</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chbDoNotAfraidTry">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Не побоялся попробовать</string>
           </property>
          </widget>
         </item>

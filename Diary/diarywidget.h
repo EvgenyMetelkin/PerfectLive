@@ -40,6 +40,7 @@ private slots:
 
 private:
     int AddHistoryInDB();
+    int GetBonus();
 
 private:
     Ui::DiaryWidget *ui;
