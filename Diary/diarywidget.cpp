@@ -7,9 +7,9 @@
 #include "dbhistorydiary.h"
 #include "WiseLine/wiselineparser.h"
 
-#define SIZE_SMALL 500
-#define SIZE_MEDIUM 950
-#define SIZE_LARGE 1500
+#define SIZE_SMALL 1000
+#define SIZE_MEDIUM 1550
+#define SIZE_LARGE 2100
 
 DiaryWidget::DiaryWidget(QWidget *parent) :
     QMainWindow(parent),
