@@ -174,34 +174,34 @@ void DiaryWidget::AddInfoBonus(QTextStream &out)
 {
     out << endl << endl;
     if(ui->chbImportantChoice->isChecked()) {
-        out << "Принял очень значимое в жизни решение           +1000";
+        out << QString("Принял очень значимое в жизни решение           +1000") << endl;
     }
     if(ui->chbImportantDay->isChecked()) {
-        out << "Незабываемый день                               +200";
+        out << QString("Незабываемый день                               +200") << endl;
     }
     if(ui->chbIncreaseKarma->isChecked()) {
-        out << "Повысил карму                                   +100";
+        out << QString("Повысил карму                                   +100") << endl;
     }
     if(ui->chbDoneGoal->isChecked()) {
-        out << "Исполнил мечту                                  +1000";
+        out << QString("Исполнил мечту                                  +1000") << endl;
     }
     if(ui->chbReadBook->isChecked()) {
-        out << "Прочитано 20+ страниц                           +200";
+        out << QString("Прочитано 20+ страниц                           +200") << endl;
     }
     if(ui->chbLearnInglish->isChecked()) {
-        out << "Выучил 10 англ. слов или прокачал английский    +200";
+        out << QString("Выучил 10 англ. слов или прокачал английский    +200") << endl;
     }
     if(ui->chbTriedSomethingNew->isChecked()) {
-        out << "AПопробовал что-то новое                        +200";
+        out << QString("AПопробовал что-то новое                        +200") << endl;
     }
     if(ui->chbVisiteCoolPlace->isChecked()) {
-        out << "Побывал в крутом месте                          +100";
+        out << QString("Побывал в крутом месте                          +100") << endl;
     }
     if(ui->chbCallMomAndDad->isChecked()) {
-        out << "Позвонил родителям                              +200";
+        out << QString("Позвонил родителям                              +200") << endl;
     }
     if(ui->chbDoNotAfraidTry->isChecked()) {
-        out << "Не побоялся попробовать                         +400";
+        out << QString("Не побоялся попробовать                         +400") << endl;
     }
 }
 
