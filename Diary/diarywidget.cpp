@@ -63,6 +63,7 @@ void DiaryWidget::SaveFile()
 
     QTextStream out(&file);
     out << ui->Text->toPlainText();
+    AddInfoBonus(out);
 
     file.close();
 
@@ -167,6 +168,41 @@ int DiaryWidget::GetBonus()
     }
 
     return  sumBonus;
+}
+
+void DiaryWidget::AddInfoBonus(QTextStream &out)
+{
+    out << endl << endl;
+    if(ui->chbImportantChoice->isChecked()) {
+        out << "Принял очень значимое в жизни решение           +1000";
+    }
+    if(ui->chbImportantDay->isChecked()) {
+        out << "Незабываемый день                               +200";
+    }
+    if(ui->chbIncreaseKarma->isChecked()) {
+        out << "Повысил карму                                   +100";
+    }
+    if(ui->chbDoneGoal->isChecked()) {
+        out << "Исполнил мечту                                  +1000";
+    }
+    if(ui->chbReadBook->isChecked()) {
+        out << "Прочитано 20+ страниц                           +200";
+    }
+    if(ui->chbLearnInglish->isChecked()) {
+        out << "Выучил 10 англ. слов или прокачал английский    +200";
+    }
+    if(ui->chbTriedSomethingNew->isChecked()) {
+        out << "AПопробовал что-то новое                        +200";
+    }
+    if(ui->chbVisiteCoolPlace->isChecked()) {
+        out << "Побывал в крутом месте                          +100";
+    }
+    if(ui->chbCallMomAndDad->isChecked()) {
+        out << "Позвонил родителям                              +200";
+    }
+    if(ui->chbDoNotAfraidTry->isChecked()) {
+        out << "Не побоялся попробовать                         +400";
+    }
 }
 
 int DiaryWidget::AddHistoryInDB()

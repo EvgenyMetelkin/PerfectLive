@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QDir>
 #include <QTimer>
+#include <QTextStream>
 
 #include "openoldfilewidget.h"
 #include "modifyfile.h"
@@ -41,6 +42,7 @@ private slots:
 private:
     int AddHistoryInDB();
     int GetBonus();
+    void AddInfoBonus(QTextStream &out);
 
 private:
     Ui::DiaryWidget *ui;
