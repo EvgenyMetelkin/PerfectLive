@@ -12,7 +12,7 @@ QString FileDirUtils::getCurrentPath()
 QString FileDirUtils::getAbsolutePath(const QString &file)
 {
     QDir absolutePath;
-    return absolutePath.absoluteFilePath(getCurrentPath() + file);
+    return absolutePath.absoluteFilePath(getCurrentPath() + QDir::separator() + file);
 }
 
 QString FileDirUtils::getMD5(const QString &str)
