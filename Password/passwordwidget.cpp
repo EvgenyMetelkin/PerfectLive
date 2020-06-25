@@ -19,7 +19,7 @@ PasswordWidget::~PasswordWidget()
 
 bool PasswordWidget::checkPass(const QString &pass)
 {
-    QString hash = FileDirUtils::GetMD5(pass);
+    QString hash = FileDirUtils::getMD5(pass);
 
     if(hash == "00a1f187721c63501356bf791e69382c") {
         Settings::set(Settings::Mode, Settings::General) = "base";

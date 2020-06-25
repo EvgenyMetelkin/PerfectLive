@@ -4,18 +4,18 @@
 #include <QDir>
 #include <QCryptographicHash>
 
-QString FileDirUtils::GetCurrentPath()
+QString FileDirUtils::getCurrentPath()
 {
     return QDir::currentPath();
 }
 
-QString FileDirUtils::GetAbsolutePath(const QString &file)
+QString FileDirUtils::getAbsolutePath(const QString &file)
 {
     QDir absolutePath;
-    return absolutePath.absoluteFilePath(GetCurrentPath() + file);
+    return absolutePath.absoluteFilePath(getCurrentPath() + file);
 }
 
-QString FileDirUtils::GetMD5(const QString &str)
+QString FileDirUtils::getMD5(const QString &str)
 {
     QCryptographicHash md5(QCryptographicHash::Md5);
     md5.addData(str.toUtf8());
