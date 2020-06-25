@@ -1,4 +1,4 @@
-QT += core gui charts sql
+QT += core gui charts sql testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,6 +23,7 @@ SOURCES += \
     Diary/diarywidget.cpp \
     Diary/historycreationdiary.cpp \
     Diary/rewritedialog.cpp \
+    Global/Test/testfiledirutils.cpp \
     Global/filedirutils.cpp \
     Global/settings.cpp \
     Goals/goalswidget.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     Diary/diarywidget.h \
     Diary/historycreationdiary.h \
     Diary/rewritedialog.h \
+    Global/Test/testfiledirutils.h \
     Global/filedirutils.h \
     Global/settings.h \
     Goals/goalswidget.h \
