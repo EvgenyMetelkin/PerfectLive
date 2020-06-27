@@ -10,7 +10,9 @@ public:
     TestFileDirUtils();
 
 private slots:
+    void getCurrentPath();
     void getAbsolutePath();
+    void getMD5();
 };
 
 #endif // TESTFILEDIRUTILS_H
