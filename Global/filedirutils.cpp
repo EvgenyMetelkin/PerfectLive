@@ -6,13 +6,13 @@
 
 QString FileDirUtils::getCurrentPath()
 {
-    return QDir::currentPath();
+    return QDir::currentPath() + /*QDir::separator()*/ '/';
 }
 
 QString FileDirUtils::getAbsolutePath(const QString &file)
 {
     QDir absolutePath;
-    return absolutePath.absoluteFilePath(getCurrentPath() + /*QDir::separator()*/ '/' + file);
+    return absolutePath.absoluteFilePath(getCurrentPath() + file);
 }
 
 QString FileDirUtils::getMD5(const QString &str)
