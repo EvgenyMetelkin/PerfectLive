@@ -17,13 +17,13 @@ public:
     ~HistoryCreationDiary();
 
 private slots:
-    void ReplyForSelectYear(QString date, int value);
-    void HandleClickedPoint(const QPointF &point);
+    void replyForSelectYear(QString date, int value);
+    void handleClickedPoint(const QPointF &point);
 
 private:
-    void LoadHistoryDiary();
-    int GetTargetDay(const QString &date);
-    void MarkOfDay(int targetDay, int value);
+    void loadHistoryDiary();
+    int getTargetDay(const QString &date);
+    void markOfDay(int targetDay, int value);
 
 private:
     QScatterSeries *m_scatter;

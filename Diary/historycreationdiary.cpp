@@ -62,35 +62,35 @@ HistoryCreationDiary::HistoryCreationDiary(QWidget *parent)
     chart()->axisY()->hide();
     chart()->legend()->hide();
 
-    LoadHistoryDiary();
-    connect(m_scatter1, &QScatterSeries::clicked, this, &HistoryCreationDiary::HandleClickedPoint);
+    loadHistoryDiary();
+    connect(m_scatter1, &QScatterSeries::clicked, this, &HistoryCreationDiary::handleClickedPoint);
 }
 
 HistoryCreationDiary::~HistoryCreationDiary()
 {
 }
 
-void HistoryCreationDiary::LoadHistoryDiary()
+void HistoryCreationDiary::loadHistoryDiary()
 {
     DBHistoryDiary db(this);
-    connect(&db, &DBHistoryDiary::ReplyForSelect, this, &HistoryCreationDiary::ReplyForSelectYear);
+    connect(&db, &DBHistoryDiary::ReplyForSelect, this, &HistoryCreationDiary::replyForSelectYear);
     db.SelectYearFromHistoryDiary();
 }
 
-void HistoryCreationDiary::ReplyForSelectYear(QString date, int value) // [slot]
+void HistoryCreationDiary::replyForSelectYear(QString date, int value) // [slot]
 {
     qDebug() << Q_FUNC_INFO << date << " " << value;
-    MarkOfDay(GetTargetDay(date), value);
+    markOfDay(getTargetDay(date), value);
 }
 
-int HistoryCreationDiary::GetTargetDay(const QString &dateString)
+int HistoryCreationDiary::getTargetDay(const QString &dateString)
 {
     QDate date = QDate::fromString(dateString, "yyyy-MM-dd");
     return (c_countPoints - static_cast<int>(date.daysTo(c_current_date))) - 1;
 }
 
 // правильно работает только если отмечать дни по убыванию даты
-void HistoryCreationDiary::MarkOfDay(int targetDay, int value)
+void HistoryCreationDiary::markOfDay(int targetDay, int value)
 {
     if(targetDay < 0) {
         qDebug() << Q_FUNC_INFO << "Error: target day more count day";
@@ -117,7 +117,7 @@ void HistoryCreationDiary::MarkOfDay(int targetDay, int value)
     }
 }
 
-void HistoryCreationDiary::HandleClickedPoint(const QPointF &point)
+void HistoryCreationDiary::handleClickedPoint(const QPointF &point)
 {
     //QPointF clickedPoint = point;
     qDebug() << "point" << point;
