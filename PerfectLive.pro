@@ -19,6 +19,7 @@ SOURCES += \
     Census/censustablemodel.cpp \
     Census/censuswidget.cpp \
     Census/dbcensus.cpp \
+    Diary/Test/testhistorycreationdiary.cpp \
     Diary/dbhistorydiary.cpp \
     Diary/diarywidget.cpp \
     Diary/historycreationdiary.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     Census/censustablemodel.h \
     Census/censuswidget.h \
     Census/dbcensus.h \
+    Diary/Test/testhistorycreationdiary.h \
     Diary/dbhistorydiary.h \
     Diary/diarywidget.h \
     Diary/historycreationdiary.h \
