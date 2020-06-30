@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QFile>
+#include <QTextStream>
 
 namespace Ui {
 class ModifyFile;
@@ -23,6 +24,7 @@ private slots:
 
 private:
     void OpenFile();
+    QString DoNotReadHiddenLine(QTextStream &in);
 
 private:
     Ui::ModifyFile *ui;

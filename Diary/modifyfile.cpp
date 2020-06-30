@@ -1,5 +1,6 @@
 #include "modifyfile.h"
 #include "ui_modifyfile.h"
+#include "Global/settings.h"
 
 #include <QDebug>
 
@@ -30,7 +31,23 @@ void ModifyFile::OpenFile()
     }
 
     QTextStream in(&m_file);
-    ui->text->setPlainText(in.readAll());
+
+    if(Settings::get(Settings::Mode, Settings::General).toString() != "hidden")
+        ui->text->setPlainText(DoNotReadHiddenLine(in));
+    else
+        ui->text->setPlainText(in.readAll());
+
+}
+
+QString ModifyFile::DoNotReadHiddenLine(QTextStream &in)
+{
+    QString textWithoutHiddenLine;
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        if(!line.startsWith("    //") || !line.startsWith("//"))
+            textWithoutHiddenLine += line + "\n";
+    }
+    return textWithoutHiddenLine;
 }
 
 void ModifyFile::on_bSaveChanges_clicked()
