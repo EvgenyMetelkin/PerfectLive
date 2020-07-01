@@ -79,7 +79,7 @@ void HistoryCreationDiary::loadHistoryDiary()
 
 void HistoryCreationDiary::replyForSelectYear(QString date, int value) // [slot]
 {
-    qDebug() << Q_FUNC_INFO << date << " " << value;
+    //qDebug() << Q_FUNC_INFO << date << " " << value;
     markOfDay(getTargetDay(date), value);
 }
 
