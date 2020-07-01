@@ -39,6 +39,7 @@ void IncomeView::initialize()
             m_setAlimony << alimony;
             m_setPassiveIncome << passiveIncome;
             m_setOther << other;
+            m_sumIncome.append(QString::number(salary + fa + alimony + passiveIncome + other));
         } else {
             break;
         }
@@ -66,29 +67,29 @@ void IncomeView::createChart()
     //[[clang::fallthrough]]; жуткая вещь, нужна чтобы компилятор не ругался на отсутствие break
     switch(m_countMount) {
     case 12:
-        categories.push_front("Dec");
+        categories.push_front("Dec +" + m_sumIncome.at(11));
     [[clang::fallthrough]]; case 11:
-        categories.push_front("Nov");
+        categories.push_front("Nov +" + m_sumIncome.at(10));
     [[clang::fallthrough]]; case 10:
-        categories.push_front("Oct");
+        categories.push_front("Oct +" + m_sumIncome.at(9));
     [[clang::fallthrough]]; case 9:
-        categories.push_front("Sept");
+        categories.push_front("Sept +" + m_sumIncome.at(8));
     [[clang::fallthrough]]; case 8:
-        categories.push_front("Aug");
+        categories.push_front("Aug +" + m_sumIncome.at(7));
     [[clang::fallthrough]]; case 7:
-        categories.push_front("Jul");
+        categories.push_front("Jul +" + m_sumIncome.at(6));
     [[clang::fallthrough]]; case 6:
-        categories.push_front("Jun");
+        categories.push_front("Jun +" + m_sumIncome.at(5));
     [[clang::fallthrough]]; case 5:
-        categories.push_front("May");
+        categories.push_front("May +" + m_sumIncome.at(4));
     [[clang::fallthrough]]; case 4:
-        categories.push_front("Apr");
+        categories.push_front("Apr +" + m_sumIncome.at(3));
     [[clang::fallthrough]]; case 3:
-        categories.push_front("Mar");
+        categories.push_front("Mar +" + m_sumIncome.at(2));
     [[clang::fallthrough]]; case 2:
-        categories.push_front("Feb");
+        categories.push_front("Feb +" + m_sumIncome.at(1));
     [[clang::fallthrough]]; case 1:
-        categories.push_front("Jan");
+        categories.push_front("Jan +" + m_sumIncome.at(0));
     }
 
     m_axisX.append(categories);

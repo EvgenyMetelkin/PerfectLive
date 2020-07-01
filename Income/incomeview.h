@@ -32,6 +32,7 @@ private:
     QBarCategoryAxis m_axisX;
     QValueAxis m_axisY;
     int m_countMount;
+    QStringList m_sumIncome;
 };
 
 #endif // INCOMEVIEW_H
