@@ -43,10 +43,12 @@ void WiseLineParser::lineBreak(QString &wiseLine)
     if(wiseLine.size() < MAX_CHAR_IN_LINE)
         return;
 
-    for(int i = MAX_CHAR_IN_LINE; i < wiseLine.size() && i > 0; --i) {
-        if(wiseLine[i] == " ") {
-            wiseLine[i] = '\n';
-            break;
+    for(int j = 1; wiseLine.size() > MAX_CHAR_IN_LINE * j; ++j) {
+        for(int i = MAX_CHAR_IN_LINE * j; i < wiseLine.size() && i > 0; --i) {
+            if(wiseLine[i] == " ") {
+                wiseLine[i] = '\n';
+                break;
+            }
         }
     }
 }
