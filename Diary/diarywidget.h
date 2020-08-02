@@ -24,6 +24,7 @@ public:
 
 signals:
     void ShowOpenOldFileWidget(QDir &m_dir);
+    void HideDiary();
 
 public slots:
     void OnOpenFile(QString &path);
@@ -38,6 +39,8 @@ private slots:
     void on_openOldFile_clicked();
 
     void on_Text_textChanged();
+
+    void on_buttonBack_clicked();
 
 private:
     int AddHistoryInDB();

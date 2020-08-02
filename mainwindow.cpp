@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_passwordWidget.show();
 
-    connect(&m_diaryWidget, &DiaryWidget::hide, this, &MainWindow::show);
+    connect(&m_diaryWidget, &DiaryWidget::HideDiary, this, &MainWindow::show);
 
     connect(&m_passwordWidget, &PasswordWidget::confirmedPassword, this, &MainWindow::confirmedPassword);
 

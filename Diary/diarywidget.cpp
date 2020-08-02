@@ -235,3 +235,9 @@ void DiaryWidget::NextWiseLine()
 {
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
 }
+
+void DiaryWidget::on_buttonBack_clicked()
+{
+    this->hide();
+    emit HideDiary();
+}
