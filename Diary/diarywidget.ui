@@ -164,6 +164,13 @@
          </spacer>
         </item>
         <item>
+         <widget class="QCheckBox" name="chbLastRecordYesterday">
+          <property name="text">
+           <string>Вчера была запись в дневнике</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="Save">
           <property name="enabled">
            <bool>false</bool>

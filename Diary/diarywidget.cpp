@@ -167,6 +167,11 @@ int DiaryWidget::GetBonus()
         sumBonus += 400;
     }
 
+    //штраф в том случае если цели достигнуты не в один день
+    if(!ui->chbLastRecordYesterday->isChecked()) {
+        sumBonus /= 4;
+    }
+
     return  sumBonus;
 }
 
