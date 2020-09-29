@@ -1,5 +1,6 @@
 #include <QDebug>
 #include <QFileDialog>
+#include <QDateTime>
 
 #include "diarywidget.h"
 #include "ui_diarywidget.h"
@@ -29,7 +30,10 @@ DiaryWidget::DiaryWidget(QWidget *parent) :
         m_dir = Settings::get(Settings::DiaryPath, Settings::General).toString();
     }
 
-    ui->Date->setDate(QDate::currentDate());
+    QDateTime currDateTime = QDateTime::currentDateTime();
+    // даем запас времени на запись в дневник, до 4 утра
+    currDateTime = currDateTime.addSecs(-(60*60*4));
+    ui->Date->setDate(currDateTime.date());
 
     ui->lWiseLine->setText(WiseLineParser::GetWiseLine());
     connect(&m_timerWiseLine, &QTimer::timeout, this, &DiaryWidget::NextWiseLine);

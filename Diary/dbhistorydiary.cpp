@@ -6,6 +6,7 @@
 #include <QSqlError>
 #include <QFile>
 #include <QDate>
+#include <QDateTime>
 #include <QDebug>
 #include <QDate>
 
@@ -58,10 +59,15 @@ bool DBHistoryDiary::CreateTableIfNotExists()
 
 bool DBHistoryDiary::InsertHistoryDiary(const int value)
 {
+    QDateTime currDateTime = QDateTime::currentDateTime();
+    // даем запас времени на запись в дневник, до 4 утра
+    currDateTime = currDateTime.addSecs(-(60*60*4));
+
     QSqlQuery query;
     query.prepare("INSERT INTO " TABLE " ( " TABLE_DATE ", "
                   TABLE_VALUE " ) "
-                  "VALUES (date('now','localtime'), :value)");
+                  "VALUES (:date, :value)");
+    query.bindValue(":date", currDateTime.toString("yyyy-MM-dd"));
     query.bindValue(":value", value);
 
     if(!query.exec()) {
