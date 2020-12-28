@@ -61,6 +61,9 @@ void MainWindow::showMainWindow()
 void MainWindow::showIncome()
 {
     ui->chartLayout->addWidget(m_incomeView);
+
+    ui->lEarnByHour->setText(m_incomeView->getEarnByHour());
+    ui->lTotalIncome->setText(m_incomeView->getTotalIncome());
 }
 
 void MainWindow::showHistoryDiary()

@@ -83,6 +83,20 @@
          </spacer>
         </item>
         <item>
+         <widget class="QLabel" name="lEarnByHour">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lTotalIncome">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="bCensus">
           <property name="font">
            <font>

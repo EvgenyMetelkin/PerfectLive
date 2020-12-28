@@ -14,12 +14,23 @@ IncomeView::IncomeView(QWidget *parent) :
     m_countMount(0)
 {
     createChart();
+    createEarnByHour();
 }
 
 IncomeView::~IncomeView()
 {
     if(m_incomeView)
         delete m_incomeView;
+}
+
+QString IncomeView::getTotalIncome()
+{
+    return m_earnByHour.getTotalIncome();
+}
+
+QString IncomeView::getEarnByHour()
+{
+    return m_earnByHour.getEarnByHour();
 }
 
 void IncomeView::initialize()
@@ -103,4 +114,9 @@ void IncomeView::createChart()
     chart()->legend()->setAlignment(Qt::AlignBottom);
 
     m_incomeView->setRenderHint(QPainter::Antialiasing);
+}
+
+void IncomeView::createEarnByHour()
+{
+    m_earnByHour.create(m_sumIncome);
 }

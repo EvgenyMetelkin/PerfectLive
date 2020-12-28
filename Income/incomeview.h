@@ -10,15 +10,21 @@
 
 QT_CHARTS_USE_NAMESPACE
 
+#include "earnbyhour.h"
+
 class IncomeView : public QChartView
 {
 public:
     explicit IncomeView(QWidget *parent = nullptr);
     ~IncomeView();
 
+    QString getTotalIncome();
+    QString getEarnByHour();
+
 private:
     void initialize();
     void createChart();
+    void createEarnByHour();
 
 private:
     QChartView *m_incomeView;
@@ -33,6 +39,8 @@ private:
     QValueAxis m_axisY;
     int m_countMount;
     QStringList m_sumIncome;
+
+    EarnByHour m_earnByHour;
 };
 
 #endif // INCOMEVIEW_H

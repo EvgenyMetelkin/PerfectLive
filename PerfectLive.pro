@@ -28,6 +28,7 @@ SOURCES += \
     Global/filedirutils.cpp \
     Global/settings.cpp \
     Goals/goalswidget.cpp \
+    Income/earnbyhour.cpp \
     Income/incomeview.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     Global/filedirutils.h \
     Global/settings.h \
     Goals/goalswidget.h \
+    Income/earnbyhour.h \
     Income/incomeview.h \
     mainwindow.h \
     Diary/modifyfile.h \
