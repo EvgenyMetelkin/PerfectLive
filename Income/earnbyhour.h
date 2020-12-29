@@ -3,6 +3,11 @@
 
 #include <QStringList>
 
+///
+/// \brief The EarnByHour class
+/// Считает общий доход за год
+/// и сколько было заработанно за каждый час
+///
 class EarnByHour
 {
 public:
@@ -13,11 +18,16 @@ public:
     QString getEarnByHour();
 
 private:
-    int calculateCountHour(int currentMount);
+    ///
+    /// \brief calculateCountHour
+    /// \param currentMount - номер последнего месяца
+    /// \return - кол-во часов от начала года до последнего часа последнего месяца
+    ///
+    qint64 calculateCountHour(int currentMount);
 
 private:
     int m_totalIncome;
-    float m_earnByHour;
+    double m_earnByHour;
 };
 
 #endif // EARNBYHOUR_H
