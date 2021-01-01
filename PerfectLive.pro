@@ -30,6 +30,7 @@ SOURCES += \
     Goals/goalswidget.cpp \
     Income/earnbyhour.cpp \
     Income/incomeview.cpp \
+    Style/mainstyle.cpp \
     main.cpp \
     mainwindow.cpp \
     Diary/modifyfile.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     Goals/goalswidget.h \
     Income/earnbyhour.h \
     Income/incomeview.h \
+    Style/mainstyle.h \
     mainwindow.h \
     Diary/modifyfile.h \
     Diary/openoldfilewidget.h \
