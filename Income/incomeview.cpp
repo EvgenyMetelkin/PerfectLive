@@ -35,6 +35,9 @@ QString IncomeView::getEarnByHour()
 
 void IncomeView::initialize()
 {
+    // файл earn может не обновиться после изменений
+    // это известная ошибка в Qt, решение:
+    // удалить в ресурсах файл и добавить его заново
     QFile file(":/personalInformation/earn.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;

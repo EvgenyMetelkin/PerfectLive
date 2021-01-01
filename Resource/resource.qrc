@@ -3,7 +3,7 @@
         <file>wiselines.txt</file>
     </qresource>
     <qresource prefix="/personalInformation">
-        <file>earn.txt</file>
         <file>goals.png</file>
+        <file>earn.txt</file>
     </qresource>
 </RCC>
