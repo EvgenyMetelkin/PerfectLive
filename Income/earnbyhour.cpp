@@ -15,7 +15,10 @@ void EarnByHour::create(QStringList &m_sumIncome)
         m_totalIncome += incomeInMount.toInt();
     }
 
-    m_earnByHour = m_totalIncome / calculateCountHour(m_sumIncome.length());
+    if(m_sumIncome.length() > 0)
+        m_earnByHour = m_totalIncome / calculateCountHour(m_sumIncome.length());
+    else
+        qDebug() << Q_FUNC_INFO << "Earn file empty!";
 }
 
 QString EarnByHour::getTotalIncome()
@@ -38,8 +41,6 @@ qint64 EarnByHour::calculateCountHour(int currentMount)
     lastDayLastMountDate = QDate(currentDate.year(), currentMount, 1);
     lastDayLastMountDate = lastDayLastMountDate.addMonths(1);
     lastDayLastMountDate = lastDayLastMountDate.addDays(-1);
-
-    //qDebug() << currentMount << " currentDate " << currentDate << endl << "firstOfJanuaryDate " << firstOfJanuaryDate << endl << "lastDayLastMountDate " << lastDayLastMountDate;
 
     return firstOfJanuaryDate.daysTo(lastDayLastMountDate) * 24;
 }
