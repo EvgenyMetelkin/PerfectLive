@@ -12,6 +12,8 @@ QT_CHARTS_USE_NAMESPACE
 
 #include "earnbyhour.h"
 
+#include <QTextStream>
+
 class IncomeView : public QChartView
 {
 public:
@@ -23,11 +25,15 @@ public:
 
 private:
     void initialize();
+    void openEarnFile();
+    void createEarnFile();
     void createChart();
     void createEarnByHour();
 
 private:
     QChartView *m_incomeView;
+    QFile m_earnFile;
+
     QBarSet m_setSalary;
     QBarSet m_setFA;
     QBarSet m_setAlimony;

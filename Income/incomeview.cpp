@@ -1,6 +1,5 @@
 #include "incomeview.h"
 
-#include <QTextStream>
 #include <QDebug>
 
 IncomeView::IncomeView(QWidget *parent) :
@@ -35,14 +34,9 @@ QString IncomeView::getEarnByHour()
 
 void IncomeView::initialize()
 {
-    // файл earn может не обновиться после изменений
-    // это известная ошибка в Qt, решение:
-    // удалить в ресурсах файл и добавить его заново
-    QFile file(":/personalInformation/earn.txt");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
+    openEarnFile();
 
-    QTextStream in(&file);
+    QTextStream in(&m_earnFile);
     while (!in.atEnd()) {
         in.readLine();
         int mount, salary, fa, alimony, passiveIncome, other;
@@ -59,7 +53,31 @@ void IncomeView::initialize()
         }
         m_countMount = mount;
     }
-    file.close();
+    m_earnFile.close();
+}
+
+void IncomeView::openEarnFile()
+{
+    // Сук, только сейчас понял что хотел это все сделать через бд...
+    m_earnFile.setFileName("earn.txt"); // !! создать под это папку
+    if (!m_earnFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        createEarnFile();
+
+        if (!m_earnFile.open(QIODevice::ReadOnly | QIODevice::Text))
+            exit(EXIT_FAILURE);
+    }
+}
+
+void IncomeView::createEarnFile()
+{
+    qDebug() << Q_FUNC_INFO;
+    m_earnFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&m_earnFile);
+    out << QObject::tr("Месяц\t\tЗарплата\tФА\t\tАлименты\tВклады\t\tДругое");
+    for(int mount = 1; mount <= 12; mount++) {
+        out << endl << mount << "\t\t0\t\t0\t\t0\t\t0\t\t0";
+    }
+    m_earnFile.close();
 }
 
 void IncomeView::createChart()
